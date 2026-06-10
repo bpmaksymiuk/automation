@@ -132,3 +132,28 @@
 - HANDOFF NOTES: Stage 6 can begin from 2-USE-CASES.md and 5-REQUIREMENTS.md.
 
 ---
+## JN-011 : Architect - Stage 6 - START - 2026-06-10
+- AGENT: Architect
+- STAGE: 6
+- EVENT: Start
+- DATE: 2026-06-10
+- ARTIFACTS READ: 2-USE-CASES.md, 5-REQUIREMENTS.md, .github/instructions/pipeline.instructions.md, .github/instructions/stage-kickoff.instructions.md, .github/instructions/stage-allowed-actions.instructions.md, .github/instructions/stage-output-contract.instructions.md, .github/instructions/journal-entry.instructions.md, .github/skills/architecture-and-parts-authoring/SKILL.md
+- ARTIFACTS WRITTEN: -
+- SUMMARY: Started Stage 6 architecture and parts authoring for the Windows 3.1 web desktop project.
+- ISSUES: External web research was limited by runner DNS resolution; decisions use established platform knowledge and cited official source URLs for downstream verification.
+- HANDOFF NOTES: N/A - stage starting
+
+---
+## JN-012 : Architect - Stage 6 - COMPLETE - 2026-06-10
+- AGENT: Architect
+- STAGE: 6
+- EVENT: Complete
+- DATE: 2026-06-10
+- GATE RESULT: PASS
+- ARTIFACTS READ: 2-USE-CASES.md, 5-REQUIREMENTS.md, .github/instructions/pipeline.instructions.md, .github/instructions/stage-kickoff.instructions.md, .github/instructions/stage-allowed-actions.instructions.md, .github/instructions/stage-output-contract.instructions.md, .github/instructions/journal-entry.instructions.md, .github/skills/architecture-and-parts-authoring/SKILL.md
+- ARTIFACTS WRITTEN: 6-ARCHITECTURE-RECOMMENDATIONS.md, 6-PARTS LIST.md, PIPELINE-STATUS.md, X-Journal.md
+- SUMMARY: Completed Stage 6 architecture decisions and parts inventory for the Windows 3.1 web desktop project.
+- ISSUES: External web research was limited by runner DNS resolution; official source URLs were preserved for downstream verification.
+- HANDOFF NOTES: Stage 7 can begin from 2-USE-CASES.md, 5-REQUIREMENTS.md, 6-ARCHITECTURE-RECOMMENDATIONS.md, and 6-PARTS LIST.md.
+
+---
