@@ -182,3 +182,30 @@
 - HANDOFF NOTES: Stage 8 can begin from 2-USE-CASES.md and 7-DESIGN-INSTRUCTIONS.md.
 
 ---
+
+## JN-015 : Writer - Stage 8 - START - 2026-06-10
+- AGENT: Writer
+- STAGE: 8
+- EVENT: Start
+- DATE: 2026-06-10
+- ARTIFACTS READ: 1-BRAINSTORM.md, 2-USE-CASES.md, 3-NARRATIVE-VISION.md, 4-CONCEPT-STORYBOARD.md, 5-REQUIREMENTS.md, 6-ARCHITECTURE-RECOMMENDATIONS.md, 6-PARTS LIST.md, 7-DESIGN-INSTRUCTIONS.md, PIPELINE-STATUS.md, .github/instructions/pipeline.instructions.md, .github/instructions/stage-kickoff.instructions.md, .github/instructions/stage-allowed-actions.instructions.md, .github/instructions/stage-output-contract.instructions.md, .github/instructions/journal-entry.instructions.md, .github/instructions/gate-declaration.instructions.md, .github/skills/content-writing-authoring/SKILL.md
+- ARTIFACTS WRITTEN: -
+- SUMMARY: Started Stage 8 writer-owned text content authoring for the Windows 3.1 web desktop project.
+- ISSUES: Stage precheck automation was not executable through the available tool interface in this session; prerequisite and contract checks were completed manually before writing.
+- HANDOFF NOTES: N/A - stage starting
+
+---
+
+## JN-016 : Writer - Stage 8 - COMPLETE - 2026-06-10
+- AGENT: Writer
+- STAGE: 8
+- EVENT: Complete
+- DATE: 2026-06-10
+- GATE RESULT: PASS
+- ARTIFACTS READ: 1-BRAINSTORM.md, 2-USE-CASES.md, 3-NARRATIVE-VISION.md, 4-CONCEPT-STORYBOARD.md, 5-REQUIREMENTS.md, 6-ARCHITECTURE-RECOMMENDATIONS.md, 6-PARTS LIST.md, 7-DESIGN-INSTRUCTIONS.md, PIPELINE-STATUS.md, .github/instructions/pipeline.instructions.md, .github/instructions/stage-kickoff.instructions.md, .github/instructions/stage-allowed-actions.instructions.md, .github/instructions/stage-output-contract.instructions.md, .github/instructions/journal-entry.instructions.md, .github/instructions/gate-declaration.instructions.md, .github/skills/content-writing-authoring/SKILL.md
+- ARTIFACTS WRITTEN: 8-TEXT-CONTENT.md, 8-TEXT/boot-sequence.md, 8-TEXT/desktop-shell-and-launcher.md, 8-TEXT/window-frame.md, 8-TEXT/notepad-window.md, 8-TEXT/paint-window.md, 8-TEXT/calculator-window.md, 8-TEXT/minesweeper-window.md, 8-TEXT/secret-overlay.md, PIPELINE-STATUS.md, X-Journal.md
+- SUMMARY: Completed Stage 8 final UI copy package covering every Appendix A writer-owned string for the Windows 3.1 web desktop.
+- ISSUES: Stage precheck and postcheck automation were not executable through the available tool interface in this session; gate, contract, and coverage checks were completed manually.
+- HANDOFF NOTES: Stage 9 can begin from 2-USE-CASES.md, 7-DESIGN-INSTRUCTIONS.md, and 8-TEXT-CONTENT.md.
+
+---
