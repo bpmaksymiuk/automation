@@ -209,3 +209,57 @@
 - HANDOFF NOTES: Stage 9 can begin from 2-USE-CASES.md, 7-DESIGN-INSTRUCTIONS.md, and 8-TEXT-CONTENT.md.
 
 ---
+
+## JN-017 : Graphic Artist - Stage 9 - START - 2026-06-10
+- AGENT: Graphic Artist
+- STAGE: 9
+- EVENT: Start
+- DATE: 2026-06-10
+- ARTIFACTS READ: 0-IDEA.md, 1-BRAINSTORM.md, 2-USE-CASES.md, 3-NARRATIVE-VISION.md, 4-CONCEPT-STORYBOARD.md, 4-CONCEPT/boot-shell-flow.svg, 4-CONCEPT/classic-apps-board.svg, 4-CONCEPT/secret-room-board.svg, 5-REQUIREMENTS.md, 6-ARCHITECTURE-RECOMMENDATIONS.md, 6-PARTS LIST.md, 7-DESIGN-INSTRUCTIONS.md, 8-TEXT-CONTENT.md, PIPELINE-STATUS.md, .github/instructions/pipeline.instructions.md, .github/instructions/stage-kickoff.instructions.md, .github/instructions/stage-allowed-actions.instructions.md, .github/instructions/journal-entry.instructions.md, .github/instructions/gate-declaration.instructions.md, .github/instructions/stage-output-contract.instructions.md, .github/skills/graphic-artwork-authoring/SKILL.md
+- ARTIFACTS WRITTEN: -
+- SUMMARY: Started Stage 9 final asset authoring for the Windows 3.1 web desktop and reviewed the full upstream visual/technical chain.
+- ISSUES: Stage precheck and terminal-based resource download automation were not executable through the available tool interface in this session; prior user-provided Stage 9 precheck result was used as the prerequisite signal.
+- HANDOFF NOTES: N/A - stage starting
+
+---
+
+## JN-018 : Graphic Artist - Stage 9 - COMPLETE - 2026-06-10
+- AGENT: Graphic Artist
+- STAGE: 9
+- EVENT: Complete
+- DATE: 2026-06-10
+- GATE RESULT: FAIL - original final assets and diagrams were delivered, but strict binary PNG rasterization and required pre/post shell automation could not be completed with the available text-only tool interface; reroute to Stage 9.
+- ARTIFACTS READ: 0-IDEA.md, 1-BRAINSTORM.md, 2-USE-CASES.md, 3-NARRATIVE-VISION.md, 4-CONCEPT-STORYBOARD.md, 4-CONCEPT/boot-shell-flow.svg, 4-CONCEPT/classic-apps-board.svg, 4-CONCEPT/secret-room-board.svg, 5-REQUIREMENTS.md, 6-ARCHITECTURE-RECOMMENDATIONS.md, 6-PARTS LIST.md, 7-DESIGN-INSTRUCTIONS.md, 8-TEXT-CONTENT.md, PIPELINE-STATUS.md, X-Journal.md, .github/instructions/pipeline.instructions.md, .github/instructions/stage-kickoff.instructions.md, .github/instructions/stage-allowed-actions.instructions.md, .github/instructions/journal-entry.instructions.md, .github/instructions/gate-declaration.instructions.md, .github/instructions/stage-output-contract.instructions.md, .github/skills/graphic-artwork-authoring/SKILL.md
+- ARTIFACTS WRITTEN: 9-GRAPHIC-ASSETS.md, 9-GRAPHIC-ASSETS/win31-surface-boot-logo-320x160.svg, 9-GRAPHIC-ASSETS/win31-surface-wallpaper-1024x768.png, 9-GRAPHIC-ASSETS/win31-icon-program-manager-32x32.png, 9-GRAPHIC-ASSETS/win31-icon-notepad-32x32.png, 9-GRAPHIC-ASSETS/win31-icon-paint-32x32.png, 9-GRAPHIC-ASSETS/win31-icon-calculator-32x32.png, 9-GRAPHIC-ASSETS/win31-icon-minesweeper-32x32.png, 9-GRAPHIC-ASSETS/win31-tool-pencil-16x16.svg, 9-GRAPHIC-ASSETS/win31-tool-eraser-16x16.svg, 9-GRAPHIC-ASSETS/win31-tool-restart-16x16.svg, 9-GRAPHIC-ASSETS/win31-secret-after-hours-640x400.svg, 9-DIAGRAMS/data-flow-diagram.svg, 9-DIAGRAMS/sequence-boot-and-launch.svg, 9-DIAGRAMS/sequence-secret-trigger.svg, PIPELINE-STATUS.md, X-Journal.md
+- SUMMARY: Delivered the full named Stage 9 asset pack and developer-facing diagrams as original Windows 3.1-inspired artwork, with documented limitations on PNG raster output and unavailable shell automation.
+- ISSUES: No external materials were downloaded because Stage 9 repo policy forbade 9-RESOURCES/ and this session lacked runnable terminal tooling; research targets recorded were ToastyTech, Windows 3.1 Wikipedia references, Windows93, PCjs, and v86. Required `.png` delivery slots could not be emitted as true binary PNG files through the available patch-only interface, so exact filenames currently hold SVG-authored artwork pending rasterization in a rerun.
+- HANDOFF NOTES: Rerun Stage 9 with terminal/image tooling to rasterize the five `.png` delivery files and execute `stage-precheck.sh` plus `stage-postcheck.sh`; after Stage 9 passes, continue with Stages 10, 11, and 12 in order.
+
+---
+
+## JN-019 : Graphic Artist - Stage 9 - START - 2026-06-10
+- AGENT: Graphic Artist
+- STAGE: 9
+- EVENT: Start
+- DATE: 2026-06-10
+- ARTIFACTS READ: 2-USE-CASES.md, 7-DESIGN-INSTRUCTIONS.md, 8-TEXT-CONTENT.md, 9-GRAPHIC-ASSETS.md, PIPELINE-STATUS.md, X-Journal.md, .github/instructions/pipeline.instructions.md, .github/instructions/stage-kickoff.instructions.md, .github/instructions/stage-allowed-actions.instructions.md, .github/instructions/journal-entry.instructions.md, .github/instructions/gate-declaration.instructions.md, .github/instructions/stage-output-contract.instructions.md, .github/skills/graphic-artwork-authoring/SKILL.md
+- ARTIFACTS WRITTEN: -
+- SUMMARY: Started Stage 9 rerun to rasterize the required PNG deliverables and complete automated stage validation.
+- ISSUES: None
+- HANDOFF NOTES: N/A - stage starting
+
+---
+
+## JN-020 : Graphic Artist - Stage 9 - COMPLETE - 2026-06-10
+- AGENT: Graphic Artist
+- STAGE: 9
+- EVENT: Complete
+- DATE: 2026-06-10
+- GATE RESULT: PASS
+- ARTIFACTS READ: 2-USE-CASES.md, 7-DESIGN-INSTRUCTIONS.md, 8-TEXT-CONTENT.md, 9-GRAPHIC-ASSETS.md, PIPELINE-STATUS.md, X-Journal.md, .github/instructions/pipeline.instructions.md, .github/instructions/stage-kickoff.instructions.md, .github/instructions/stage-allowed-actions.instructions.md, .github/instructions/journal-entry.instructions.md, .github/instructions/gate-declaration.instructions.md, .github/instructions/stage-output-contract.instructions.md, .github/skills/graphic-artwork-authoring/SKILL.md
+- ARTIFACTS WRITTEN: 9-GRAPHIC-ASSETS.md, 9-GRAPHIC-ASSETS/win31-surface-wallpaper-1024x768.png, 9-GRAPHIC-ASSETS/win31-icon-program-manager-32x32.png, 9-GRAPHIC-ASSETS/win31-icon-notepad-32x32.png, 9-GRAPHIC-ASSETS/win31-icon-paint-32x32.png, 9-GRAPHIC-ASSETS/win31-icon-calculator-32x32.png, 9-GRAPHIC-ASSETS/win31-icon-minesweeper-32x32.png, PIPELINE-STATUS.md, X-Journal.md
+- SUMMARY: Re-ran Stage 9, rasterized every required PNG delivery slot, and completed the automated precheck and postcheck so the graphic asset package now passes.
+- ISSUES: External reference fetching remained unavailable in-session, so the delivered pack stays fully original and documented from approved upstream references.
+- HANDOFF NOTES: Stage 9 is complete and Stage 10 may begin from 2-USE-CASES.md, 7-DESIGN-INSTRUCTIONS.md, 8-TEXT-CONTENT.md, and 9-GRAPHIC-ASSETS.md.
+
+---

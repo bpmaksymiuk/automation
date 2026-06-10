@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" role="img" aria-labelledby="title">
+  <title id="title">Restart tool icon</title>
+  <path d="M8 2.2 A5.8 5.8 0 1 0 13.5 6" fill="none" stroke="#000080" stroke-width="2"/>
+  <path d="M11.4 2.5 L14.2 2.5 L14.2 5.3" fill="none" stroke="#000080" stroke-width="2"/>
+  <circle cx="8" cy="8" r="2.2" fill="#f7f0d9" stroke="#000000"/>
+  <circle cx="8" cy="8" r="0.8" fill="#db7b6f"/>
+</svg>

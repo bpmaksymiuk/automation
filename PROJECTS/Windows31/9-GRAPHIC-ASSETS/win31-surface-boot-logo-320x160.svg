@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="160" viewBox="0 0 320 160" role="img" aria-labelledby="title desc">
+  <title id="title">Retro boot emblem</title>
+  <desc id="desc">Original Windows 3.1 inspired boot emblem with retro panes and a beveled badge.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#e8ecef"/>
+      <stop offset="1" stop-color="#b8c0c6"/>
+    </linearGradient>
+    <linearGradient id="plate" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#0a5c66"/>
+      <stop offset="1" stop-color="#08356a"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="160" fill="url(#bg)"/>
+  <rect x="24" y="18" width="272" height="124" rx="8" fill="#f7f7f1" stroke="#808080" stroke-width="2"/>
+  <rect x="28" y="22" width="264" height="116" rx="6" fill="url(#plate)" stroke="#ffffff" stroke-width="2"/>
+  <g transform="translate(64 38)">
+    <rect x="0" y="0" width="72" height="44" fill="#ffffff" opacity="0.92"/>
+    <rect x="78" y="6" width="72" height="44" fill="#f6d36a"/>
+    <rect x="8" y="52" width="72" height="44" fill="#db7b6f"/>
+    <rect x="86" y="58" width="72" height="44" fill="#7fd3e6"/>
+    <path d="M0 0 L150 6 L158 102 L8 96 Z" fill="none" stroke="#0b1f33" stroke-width="4"/>
+    <path d="M75 3 L82 99" stroke="#0b1f33" stroke-width="4"/>
+    <path d="M4 49 L154 55" stroke="#0b1f33" stroke-width="4"/>
+  </g>
+  <text x="205" y="72" fill="#f7f7f1" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle">Windows 31</text>
+  <text x="205" y="100" fill="#d7e1ea" font-family="Segoe UI, Arial, sans-serif" font-size="12" letter-spacing="2.2" text-anchor="middle">AFTERNOON EDITION</text>
+  <text x="160" y="132" fill="#d8e1e4" font-family="Segoe UI, Arial, sans-serif" font-size="11" text-anchor="middle">booting a tiny room of tools</text>
+</svg>

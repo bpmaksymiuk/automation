@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Sequence diagram boot and app launch</title>
+  <desc id="desc">Sequence from site load through boot sequence to desktop and opening an app.</desc>
+  <rect width="1600" height="900" fill="#0d1117"/>
+  <text x="48" y="54" fill="#e6edf3" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Sequence — Boot to App Launch</text>
+  <text x="48" y="80" fill="#8b949e" font-family="Segoe UI, Arial, sans-serif" font-size="15">UC-001 + UC-002 implementation path</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
+    <rect x="70" y="118" width="170" height="56" rx="8" fill="#161b22" stroke="#79c0ff" stroke-width="2"/>
+    <text x="155" y="152" fill="#79c0ff" font-size="22" font-weight="700">Visitor</text>
+    <rect x="320" y="118" width="220" height="56" rx="8" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+    <text x="430" y="152" fill="#d29922" font-size="22" font-weight="700">ShellRoot</text>
+    <rect x="620" y="118" width="220" height="56" rx="8" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+    <text x="730" y="152" fill="#d29922" font-size="22" font-weight="700">Shell Reducer</text>
+    <rect x="920" y="118" width="230" height="56" rx="8" fill="#161b22" stroke="#f78166" stroke-width="2"/>
+    <text x="1035" y="152" fill="#f78166" font-size="22" font-weight="700">BootSequence</text>
+    <rect x="1230" y="118" width="250" height="56" rx="8" fill="#161b22" stroke="#f78166" stroke-width="2"/>
+    <text x="1355" y="152" fill="#f78166" font-size="22" font-weight="700">DesktopSurface / App</text>
+  </g>
+
+  <g stroke="#3d444d" stroke-dasharray="8 8">
+    <path d="M155 174 V840"/><path d="M430 174 V840"/><path d="M730 174 V840"/><path d="M1035 174 V840"/><path d="M1355 174 V840"/>
+  </g>
+
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="16">
+    <path d="M155 230 H430" stroke="#79c0ff" stroke-width="3"/>
+    <text x="214" y="220" fill="#c9d1d9">1. open site</text>
+
+    <path d="M430 270 H730" stroke="#d29922" stroke-width="3"/>
+    <text x="492" y="260" fill="#c9d1d9">2. initialize phase=boot</text>
+
+    <path d="M730 310 H1035" stroke="#d29922" stroke-width="3"/>
+    <text x="790" y="300" fill="#c9d1d9">3. render boot + start timer</text>
+
+    <path d="M1035 350 H155" stroke="#79c0ff" stroke-width="3"/>
+    <text x="650" y="340" fill="#c9d1d9">4. show boot mark, status line, visible Skip control</text>
+
+    <path d="M155 410 H1035" stroke="#79c0ff" stroke-width="3"/>
+    <text x="438" y="400" fill="#c9d1d9">5. wait or activate Skip</text>
+
+    <path d="M1035 450 H730" stroke="#d29922" stroke-width="3"/>
+    <text x="794" y="440" fill="#c9d1d9">6. BOOT_COMPLETE / BOOT_SKIP</text>
+
+    <path d="M730 490 H430" stroke="#d29922" stroke-width="3"/>
+    <text x="494" y="480" fill="#c9d1d9">7. phase=desktop</text>
+
+    <path d="M430 530 H1355" stroke="#d29922" stroke-width="3"/>
+    <text x="792" y="520" fill="#c9d1d9">8. render wallpaper + Program Manager launcher grid</text>
+
+    <path d="M155 590 H1355" stroke="#79c0ff" stroke-width="3"/>
+    <text x="630" y="580" fill="#c9d1d9">9. double-click icon / touch tap / keyboard activate</text>
+
+    <path d="M1355 630 H730" stroke="#f78166" stroke-width="3"/>
+    <text x="955" y="620" fill="#c9d1d9">10. OPEN_APP(appId)</text>
+
+    <path d="M730 670 H430" stroke="#d29922" stroke-width="3"/>
+    <text x="512" y="660" fill="#c9d1d9">11. focus existing or create one window</text>
+
+    <path d="M430 710 H1355" stroke="#d29922" stroke-width="3"/>
+    <text x="834" y="700" fill="#c9d1d9">12. render WindowFrame with correct app module</text>
+
+    <path d="M1355 770 H155" stroke="#79c0ff" stroke-width="3"/>
+    <text x="692" y="760" fill="#c9d1d9">13. visitor interacts with launched utility and can later close back to shell</text>
+  </g>
+
+  <rect x="74" y="804" width="1450" height="56" rx="8" fill="#161b22" stroke="#3d444d"/>
+  <text x="799" y="839" fill="#8b949e" font-family="Segoe UI, Arial, sans-serif" font-size="15" text-anchor="middle">DI-003 defines authoritative reducer events; DI-004 governs boot transition safety; DI-005 governs launcher activation and app window rendering.</text>
+</svg>
