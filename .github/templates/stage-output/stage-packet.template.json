@@ -1,0 +1,13 @@
+{
+  "packet_version": "1",
+  "generated_at": "YYYY-MM-DD",
+  "project_root": "PROJECTS/<APP>",
+  "stage": "6",
+  "postcheck_artifact": "6-ARCHITECTURE-RECOMMENDATIONS.md",
+  "strict_mode": true,
+  "allowed_write_scope": "<from schema>, PIPELINE-STATUS.md, X-Journal.md",
+  "changed_paths": [
+    "<artifact-path>",
+    "PIPELINE-STATUS.md"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "smoke home",
+  "baseUrl": "http://localhost:3000",
+  "steps": [
+    { "action": "goto", "url": "/" },
+    { "action": "waitForSelector", "selector": "body" },
+    { "action": "screenshot", "path": "smoke-home.png" }
+  ]
+}

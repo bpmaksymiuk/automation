@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Classic Apps Storyboard</title>
+  <desc id="desc">Storyboard board showing Notepad, Paint, Calculator, and Minesweeper as period-correct app windows.</desc>
+  <rect width="1600" height="900" fill="#0d1117"/>
+  <rect x="0" y="0" width="1600" height="72" fill="#161b22"/>
+  <text x="36" y="44" fill="#e6edf3" font-family="Arial, sans-serif" font-size="28" font-weight="700">Classic Apps Window Set</text>
+  <text x="36" y="62" fill="#8b949e" font-family="Arial, sans-serif" font-size="14">The four bundled experiences that define the desktop loop</text>
+
+  <rect x="60" y="130" width="700" height="320" rx="16" fill="#111827" stroke="#6b7280" stroke-width="3"/>
+  <rect x="60" y="130" width="700" height="44" rx="16" fill="#1f2937"/>
+  <text x="82" y="158" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="18" font-weight="700">Notepad</text>
+  <rect x="92" y="196" width="180" height="200" rx="10" fill="#0f172a" stroke="#475569"/>
+  <text x="118" y="236" fill="#d1d5db" font-family="monospace" font-size="16">plain text...</text>
+  <text x="118" y="264" fill="#94a3b8" font-family="monospace" font-size="16">cursor, typing, select</text>
+  <text x="118" y="330" fill="#94a3b8" font-family="Arial, sans-serif" font-size="15">A stripped-down writing surface</text>
+
+  <rect x="290" y="196" width="200" height="200" rx="10" fill="#0f172a" stroke="#475569"/>
+  <text x="316" y="232" fill="#d1d5db" font-family="Arial, sans-serif" font-size="16" font-weight="700">Paint</text>
+  <rect x="316" y="252" width="150" height="92" rx="8" fill="#152238" stroke="#64748b"/>
+  <path d="M338 314 C356 284, 378 292, 400 270" fill="none" stroke="#facc15" stroke-width="5"/>
+  <text x="316" y="378" fill="#94a3b8" font-family="Arial, sans-serif" font-size="15">Brushes, color, canvas</text>
+
+  <rect x="530" y="196" width="200" height="200" rx="10" fill="#0f172a" stroke="#475569"/>
+  <text x="556" y="232" fill="#d1d5db" font-family="Arial, sans-serif" font-size="16" font-weight="700">Calculator</text>
+  <rect x="556" y="250" width="150" height="126" rx="10" fill="#152238" stroke="#64748b"/>
+  <text x="580" y="296" fill="#e5e7eb" font-family="monospace" font-size="26">7 8 9</text>
+  <text x="580" y="332" fill="#e5e7eb" font-family="monospace" font-size="26">4 5 6</text>
+  <text x="580" y="368" fill="#e5e7eb" font-family="monospace" font-size="26">1 2 3</text>
+
+  <rect x="760" y="130" width="780" height="320" rx="16" fill="#111827" stroke="#6b7280" stroke-width="3"/>
+  <rect x="760" y="130" width="780" height="44" rx="16" fill="#1f2937"/>
+  <text x="782" y="158" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="18" font-weight="700">Minesweeper</text>
+  <rect x="798" y="198" width="210" height="210" rx="10" fill="#0f172a" stroke="#475569"/>
+  <rect x="816" y="216" width="174" height="174" rx="4" fill="#111827" stroke="#64748b"/>
+  <g fill="#cbd5e1" font-family="monospace" font-size="18">
+    <text x="840" y="246">■ ■ ■</text>
+    <text x="840" y="276">■ 1 ■</text>
+    <text x="840" y="306">■ 2 ■</text>
+    <text x="840" y="336">■ ■ ■</text>
+  </g>
+  <text x="798" y="436" fill="#94a3b8" font-family="Arial, sans-serif" font-size="15">One-click start, flags, counters, restart loop</text>
+
+  <rect x="1050" y="198" width="210" height="210" rx="10" fill="#0f172a" stroke="#475569"/>
+  <text x="1076" y="236" fill="#d1d5db" font-family="Arial, sans-serif" font-size="16" font-weight="700">App behavior notes</text>
+  <text x="1076" y="272" fill="#94a3b8" font-family="Arial, sans-serif" font-size="15">Each window is small and focused.</text>
+  <text x="1076" y="298" fill="#94a3b8" font-family="Arial, sans-serif" font-size="15">Closing should always return to shell.</text>
+  <text x="1076" y="324" fill="#94a3b8" font-family="Arial, sans-serif" font-size="15">Touch and mouse both need clear affordances.</text>
+
+  <rect x="60" y="500" width="1480" height="300" rx="16" fill="#111827" stroke="#30363d" stroke-width="2"/>
+  <text x="88" y="540" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="18" font-weight="700">Interaction cluster</text>
+  <text x="88" y="572" fill="#9ca3af" font-family="Arial, sans-serif" font-size="16">Notepad and Calculator support quick utility tasks; Paint and Minesweeper invite playful engagement; each app is a recognizable window with a distinct rhythm.</text>
+</svg>
