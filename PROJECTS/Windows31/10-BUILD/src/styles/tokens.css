@@ -1,0 +1,44 @@
+:root {
+  --color-window: #c0c0c0;
+  --color-shadow: #808080;
+  --color-highlight: #ffffff;
+  --color-ink: #000000;
+  --color-teal: #008080;
+  --color-navy: #000080;
+  --color-focus: #000080;
+  --color-overlay: rgb(0 0 0 / 0.35);
+  --color-desktop-canvas: #c0c0c0;
+  --color-danger: #ff0000;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --radius-sm: 2px;
+  --bevel-width: 2px;
+  --titlebar-height: 30px;
+  --touch-target-size: 44px;
+  --z-desktop: 1;
+  --z-window-base: 10;
+  --z-secret: 1000;
+  --motion-fast: 120ms;
+  --motion-medium: 220ms;
+  --motion-boot: 3200ms;
+  --shadow-window:
+    inset -2px -2px 0 var(--color-shadow),
+    inset 2px 2px 0 var(--color-highlight),
+    inset -4px -4px 0 #000000,
+    inset 4px 4px 0 #dfdfdf;
+  --shadow-inset:
+    inset -2px -2px 0 var(--color-highlight),
+    inset 2px 2px 0 var(--color-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 1ms;
+    --motion-medium: 1ms;
+    --motion-boot: 300ms;
+  }
+}

@@ -1,0 +1,70 @@
+.layout {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  align-items: center;
+  padding: var(--spacing-2);
+}
+
+.counter,
+.status {
+  min-width: 56px;
+  padding: var(--spacing-2);
+  background: var(--color-highlight);
+  box-shadow: var(--shadow-inset);
+  text-align: center;
+  font-weight: 700;
+}
+
+.toolbarButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.restartIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.grid {
+  display: grid;
+  gap: 2px;
+  align-content: start;
+  padding: var(--spacing-2);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(28px, 1fr));
+  gap: 2px;
+}
+
+.cell {
+  min-width: 28px;
+  min-height: 28px;
+  border: 1px solid var(--color-ink);
+  background: var(--color-window);
+  box-shadow:
+    inset -1px -1px 0 var(--color-shadow),
+    inset 1px 1px 0 var(--color-highlight);
+  font-weight: 700;
+}
+
+.cellRevealed {
+  background: #d8d8d8;
+  box-shadow: inset 1px 1px 0 var(--color-shadow);
+}
+
+@media (max-width: 768px) {
+  .cell {
+    min-width: 32px;
+    min-height: 32px;
+  }
+}

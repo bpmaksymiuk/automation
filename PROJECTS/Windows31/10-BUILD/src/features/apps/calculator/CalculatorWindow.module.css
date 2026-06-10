@@ -1,0 +1,33 @@
+.layout {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: var(--spacing-2);
+  height: 100%;
+  padding: var(--spacing-2);
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 48px;
+  padding: var(--spacing-2);
+  background: var(--color-highlight);
+  box-shadow: var(--shadow-inset);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.clearButton {
+  justify-self: start;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-2);
+}
+
+.key {
+  min-height: 40px;
+}

@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body,
+button,
+input,
+textarea {
+  font: 400 14px/1.35 'MS Sans Serif', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button,
+input,
+textarea {
+  margin: 0;
+}
+
+button {
+  border: 0;
+  background: none;
+  color: inherit;
+}
+
+img,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+textarea {
+  resize: none;
+}

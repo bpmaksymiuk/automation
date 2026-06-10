@@ -1,0 +1,50 @@
+.boot {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  background:
+    radial-gradient(circle at top, rgb(255 255 255 / 0.14), transparent 45%),
+    var(--color-teal);
+  padding: var(--spacing-6);
+}
+
+.panel {
+  display: grid;
+  gap: var(--spacing-3);
+  justify-items: center;
+  width: min(100%, 440px);
+  padding: var(--spacing-6);
+  background: var(--color-window);
+  box-shadow: var(--shadow-window);
+  text-align: center;
+}
+
+.logo {
+  width: min(100%, 320px);
+  height: auto;
+}
+
+.logoFallback {
+  display: grid;
+  place-items: center;
+  width: 200px;
+  height: 120px;
+  border: 2px solid var(--color-ink);
+  background: linear-gradient(135deg, var(--color-teal), var(--color-navy));
+  color: var(--color-highlight);
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.title,
+.status {
+  margin: 0;
+}
+
+.title {
+  font-size: 1.4rem;
+}
+
+.skipButton {
+  margin-top: var(--spacing-2);
+}
