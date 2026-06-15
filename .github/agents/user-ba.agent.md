@@ -3,6 +3,10 @@ name: User / BA
 description: >
   The User/BA proposes use cases that define what the pipeline product must enable, producing
   `2-USE-CASES.md` as advisory input for downstream approval.
+model_capability: "sonnet"
+weak_model_adaptation: "Use case drafting can be modular. Write one UC at a time. Use the UC template to constrain output. Haiku can handle if UCs are kept focused."
+works_with: ["claude-sonnet-4.5", "claude-haiku-4.5", "gpt-4", "gpt-5"]
+not_recommended: []
 tools:
   - read_file
   - create_file

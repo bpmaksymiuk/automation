@@ -3,6 +3,10 @@ name: Technical Lead
 description: >
   Produces implementation-ready design instructions that the Developer can
   execute without clarification.
+model_capability: "sonnet+"
+weak_model_adaptation: "Design Instructions demand precision and broad system context. Haiku will produce narrower DIes (smaller units). Use explicit DI templates and constraint-first format."
+works_with: ["claude-sonnet-4.5", "gpt-4", "gpt-5"]
+not_recommended: ["claude-haiku-4.5", "gpt-4-mini"]
 tools:
   - read_file
   - create_file

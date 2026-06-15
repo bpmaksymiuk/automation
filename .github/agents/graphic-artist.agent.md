@@ -6,6 +6,10 @@ description: >
   3D models, animations, fonts, icon sets, photos, UI kits, reference websites,
   and more) that the Developer will need — reading all pipeline artifacts to
   anticipate needs without waiting to be asked.
+model_capability: "opus+"
+weak_model_adaptation: "Visual reasoning is complex. Haiku will miss subtle layout/spacing issues. Use Opus for storyboards; can use Haiku for asset inventory only."
+works_with: ["claude-opus-4.7", "claude-opus-4.6", "gpt-5"]
+not_recommended: ["claude-haiku-4.5", "gpt-4-mini"]
 tools:
   - read_file
   - create_file

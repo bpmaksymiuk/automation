@@ -3,6 +3,10 @@ name: Auditor
 description: >
   Observes pipeline work for compliance violations and records independent,
   evidence-based findings.
+model_capability: "sonnet"
+weak_model_adaptation: "Compliance checking is logical. Haiku can handle if audit rules are explicit. Provide the files to check and the exact rules to verify."
+works_with: ["claude-sonnet-4.5", "claude-haiku-4.5", "gpt-4", "gpt-5"]
+not_recommended: []
 tools:
   - read_file
   - create_file

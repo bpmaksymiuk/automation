@@ -5,6 +5,10 @@ description: >
   listing all directly affected downstream stages to rerun in order. Also identifies the owning fault and applies
   minimal pipeline-control updates under `.github/` so the same class of mistake is harder to
   repeat.
+model_capability: "sonnet"
+weak_model_adaptation: "Gate detection and routing are logical tasks. Haiku can handle if gate rules are explicit. Provide the exact gate violation and route in a structured format."
+works_with: ["claude-sonnet-4.5", "claude-haiku-4.5", "gpt-4", "gpt-5"]
+not_recommended: []
 tools:
   - read_file
   - create_file

@@ -3,6 +3,10 @@ name: Architect
 description: >
   Makes concrete technology and component decisions from business requirements
   and turns them into coherent architecture recommendations and parts choices.
+model_capability: "sonnet+"
+weak_model_adaptation: "Break architecture into binary decision trees. Use explicit technology matrix (yes/no choices, not pros/cons). Provide 2–3 concrete examples from similar projects."
+works_with: ["claude-opus-4.7", "claude-opus-4.6", "claude-sonnet-4.5", "gpt-4", "gpt-5"]
+not_recommended: ["claude-haiku-4.5", "gpt-4-mini"]
 tools:
   - read_file
   - create_file

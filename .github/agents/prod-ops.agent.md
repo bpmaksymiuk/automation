@@ -3,6 +3,10 @@ name: Prod Ops
 description: >
   Deploys the approved build to the live server, runs post-deploy smoke tests
   against the live URL, and records deployment outcomes.
+model_capability: "sonnet"
+weak_model_adaptation: "Deployment is procedural. Haiku can follow a checklist. Use explicit step-by-step format. Avoid complex decision trees during deployment."
+works_with: ["claude-sonnet-4.5", "claude-haiku-4.5", "gpt-4", "gpt-5"]
+not_recommended: []
 tools:
   - read_file
   - create_file

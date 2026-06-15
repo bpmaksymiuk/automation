@@ -4,6 +4,10 @@ description: >
   The Writer brainstorms a raw user idea into a rich exploration at Stage 1,
   researches comparable products, establishes tone and themes, and produces
   narrative and application text artifacts.
+model_capability: "sonnet"
+weak_model_adaptation: "Writing is modular. Brainstorm can be narrow scope (one theme at a time). Narrative vision is independent sections. Haiku can handle if input is scoped."
+works_with: ["claude-sonnet-4.5", "claude-haiku-4.5", "gpt-4", "gpt-5"]
+not_recommended: []
 tools:
   - read_file
   - create_file

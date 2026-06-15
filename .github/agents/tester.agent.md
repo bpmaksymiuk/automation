@@ -4,6 +4,10 @@ description: >
   Writes test cases and formal verification Playwright specs, executes them
   against ./10-BUILD/ with a visible browser, records evidence, and issues a
   release recommendation.
+model_capability: "sonnet"
+weak_model_adaptation: "Test case writing is procedural and precise. Haiku can handle if using the constraint-first TC schema. Test execution is straightforward Playwright."
+works_with: ["claude-sonnet-4.5", "claude-haiku-4.5", "gpt-4", "gpt-5"]
+not_recommended: []
 tools:
   - read_file
   - create_file

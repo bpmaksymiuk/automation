@@ -3,6 +3,10 @@ name: Product Owner
 description: >
   Reviews and finalizes use cases, applies the single-source-of-intent rule, and
   publishes the authoritative statement of approved scope.
+model_capability: "sonnet+"
+weak_model_adaptation: "Approval requires reading and comparing all UCs. Haiku's context window is tight. If using Haiku, approve one UC at a time, not the full batch."
+works_with: ["claude-sonnet-4.5", "gpt-4", "gpt-5"]
+not_recommended: ["claude-haiku-4.5", "gpt-4-mini"]
 tools:
   - read_file
   - create_file

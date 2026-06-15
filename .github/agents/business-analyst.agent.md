@@ -3,6 +3,10 @@ name: Business Analyst
 description: >
   The Business Analyst derives atomic, testable, shall-language requirements
   from approved use cases and research.
+model_capability: "sonnet"
+weak_model_adaptation: "Requirements can be written atomically. Use numbered checklist format. Each BR is independent; no need for broad context."
+works_with: ["claude-sonnet-4.5", "claude-haiku-4.5", "gpt-4", "gpt-5"]
+not_recommended: []
 tools:
   - read_file
   - create_file

@@ -3,6 +3,10 @@ name: Developer
 description: >
   Implements approved design instructions into working product changes and
   records release-relevant implementation detail.
+model_capability: "sonnet"
+weak_model_adaptation: "Code implementation is precise work. Haiku struggles with multi-file context. Break into smaller modules. Use explicit DI-by-DI approach (one DI per session if needed)."
+works_with: ["claude-sonnet-4.5", "claude-haiku-4.5", "gpt-4", "gpt-5"]
+not_recommended: []
 tools:
   - read_file
   - create_file
