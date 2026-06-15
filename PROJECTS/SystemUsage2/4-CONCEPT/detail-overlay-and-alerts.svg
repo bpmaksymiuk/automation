@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="1000" height="560" fill="#161b22"/>
+  <rect x="0" y="0" width="1000" height="44" fill="#21262d"/>
+  <text x="20" y="29" fill="#e8902a" font-size="18">Overlays &amp; Detail-on-Demand</text>
+
+  <rect x="20" y="70" width="300" height="220" rx="8" fill="#211b14" stroke="#b68a4e" stroke-width="1.5"/>
+  <text x="36" y="94" fill="#e8902a" font-size="13">Process Inspector (inline)</text>
+  <rect x="36" y="108" width="268" height="22" fill="#2c241a"/><text x="44" y="124" fill="#dce6ea" font-size="10">chrome   pid 4821   41%   ▸</text>
+  <rect x="36" y="132" width="268" height="70" fill="#181310" stroke="#5a4a33"/>
+  <text x="44" y="150" fill="#9c8f7e" font-size="9">/usr/bin/chrome --type=renderer ...</text>
+  <polyline points="44,190 70,178 96,184 122,170 148,182 174,165 200,176" fill="none" stroke="#e8902a" stroke-width="1.5"/>
+  <text x="44" y="198" fill="#9c8f7e" font-size="8">cpu history sparkline</text>
+  <rect x="36" y="206" width="268" height="22" fill="#2c241a"/><text x="44" y="222" fill="#dce6ea" font-size="10">node     pid 3310   22%   ▸</text>
+  <text x="36" y="256" fill="#9c8f7e" font-size="9">click a row to expand command + history</text>
+
+  <rect x="350" y="70" width="300" height="220" rx="8" fill="#0d1117" stroke="#b68a4e" stroke-width="2"/>
+  <text x="366" y="94" fill="#e8902a" font-size="13">History Modal (30 min)</text>
+  <rect x="366" y="108" width="268" height="140" fill="#11161d" stroke="#5a4a33"/>
+  <polyline points="372,230 400,200 430,210 460,160 490,180 520,120 550,150 590,100 628,130" fill="none" stroke="#3fb4c4" stroke-width="2"/>
+  <line x1="366" y1="248" x2="634" y2="248" stroke="#5a4a33"/>
+  <text x="500" y="266" fill="#9c8f7e" font-size="9" text-anchor="middle">click gauge label · iris-open over dimmed room</text>
+
+  <rect x="680" y="70" width="300" height="220" rx="8" fill="#1c1610" stroke="#b68a4e" stroke-width="2"/>
+  <text x="696" y="94" fill="#e8902a" font-size="13">Alert Control Drawer</text>
+  <text x="696" y="124" fill="#dce6ea" font-size="11">CPU threshold</text>
+  <rect x="696" y="132" width="240" height="10" rx="5" fill="#2c241a"/><circle cx="880" cy="137" r="9" fill="#b68a4e"/>
+  <text x="696" y="166" fill="#dce6ea" font-size="11">RAM threshold</text>
+  <rect x="696" y="174" width="240" height="10" rx="5" fill="#2c241a"/><circle cx="900" cy="179" r="9" fill="#b68a4e"/>
+  <text x="696" y="212" fill="#dce6ea" font-size="11">Notifications</text>
+  <rect x="696" y="220" width="40" height="18" rx="9" fill="#3ad07a"/><text x="746" y="234" fill="#9c8f7e" font-size="10">browser</text>
+  <rect x="820" y="220" width="40" height="18" rx="9" fill="#3ad07a"/><text x="870" y="234" fill="#9c8f7e" font-size="10">desktop</text>
+  <text x="696" y="266" fill="#9c8f7e" font-size="9">drag valves · persists to localStorage</text>
+
+  <rect x="20" y="320" width="460" height="210" rx="8" fill="#211b14" stroke="#b68a4e" stroke-width="1.5"/>
+  <text x="36" y="344" fill="#e8902a" font-size="13">Tooltip on hover/tap</text>
+  <circle cx="130" cy="430" r="55" fill="#1a1510" stroke="#9c5b2e" stroke-width="5"/>
+  <path d="M130 430 L165 400" stroke="#e8902a" stroke-width="3"/>
+  <rect x="210" y="390" width="220" height="80" rx="6" fill="#0d1117" stroke="#3fb4c4"/>
+  <text x="224" y="414" fill="#dce6ea" font-size="11">CPU 63.4%</text>
+  <text x="224" y="434" fill="#9c8f7e" font-size="10">5-min min/max: 21% / 88%</text>
+  <text x="224" y="454" fill="#9c8f7e" font-size="10">threshold: 85%</text>
+
+  <rect x="500" y="320" width="480" height="210" rx="8" fill="#211b14" stroke="#c5402b" stroke-width="2"/>
+  <text x="516" y="344" fill="#c5402b" font-size="13">Alarm state — relief valve vents</text>
+  <circle cx="600" cy="430" r="55" fill="#2a1410" stroke="#c5402b" stroke-width="6"/>
+  <text x="600" y="436" fill="#c5402b" font-size="20" text-anchor="middle">92%</text>
+  <path d="M660 380 q20 -30 40 -10 q-25 5 -10 25 q-20 -5 -30 -15Z" fill="#dce6ea" opacity="0.5"/>
+  <circle cx="740" cy="420" r="9" fill="#c5402b"/><text x="760" y="425" fill="#dce6ea" font-size="11">CRITICAL lamp</text>
+  <text x="516" y="500" fill="#9c8f7e" font-size="10">panel shudders + hiss; clears automatically when value drops below threshold</text>
+</svg>

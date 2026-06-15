@@ -18,7 +18,7 @@
 
 - **DESCRIPTION:** Samples CPU (overall + per-core), memory, swap, disk capacity/IO, network IO, top processes, and optional GPU into a single snapshot dict.
 - **TECHNOLOGY RECOMMENDATIONS:** `psutil` (BSD-3-Clause) for system metrics; `nvidia-smi` via `subprocess` for optional GPU; emits a versioned JSON shape.
-- **NOTES:** Computes IO/network rates as deltas between samples. GPU absence → `{available:false}`. Module within `agent.py`.
+- **NOTES:** Computes IO/network rates as deltas between samples. GPU absence -> `{available:false}`. Module within `agent.py`.
 - **RELATED:** AR-002, AR-003; BR-006, BR-007, BR-009, BR-010, BR-011, BR-012, BR-013, BR-015, BR-016, BR-018, BR-021, BR-022, BR-023, BR-037
 
 ## PT-003 : Single-page client
@@ -60,7 +60,7 @@
 
 - **DESCRIPTION:** Layout reflow, reduced-motion handling, keyboard focus, and contrast.
 - **TECHNOLOGY RECOMMENDATIONS:** CSS Grid with a `@media (max-width:768px)` single-column rule; `@media (prefers-reduced-motion: reduce)` plus an in-app toggle; native range inputs and buttons with visible `:focus-visible` styling.
-- **NOTES:** Body text colours verified ≥4.5:1 on the dark ground. Inlined in `index.html`.
+- **NOTES:** Body text colours verified >=4.5:1 on the dark ground. Inlined in `index.html`.
 - **RELATED:** AR-008; BR-032, BR-033, BR-035, BR-039, BR-NF-ACCESSIBILITY
 
 ## Traceability

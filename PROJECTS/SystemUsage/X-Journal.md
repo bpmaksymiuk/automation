@@ -236,3 +236,75 @@
 - SUMMARY: Configured deploy artefacts (deploy.sh present; added deploy/nginx.conf with a CSP permitting the single inline bundle, and .env.deploy.example). Performed a local production-style static verification deploy (demo mode, 127.0.0.1:8090) and ran the smoke suite: S-001/S-002/S-003 all PASS, HTTP 200. Remote SSH push requires real credentials in .env.deploy (only DEPLOY_URL populated here). Wrote 12-DEPLOYMENT-RESULTS.md (DR-PIPELINE-SystemUsage-001, Outcome PASS). Postcheck stage 12 RESULT PASS.
 - ISSUES: No remote deploy target configured in this environment; verified the static artefact locally instead.
 - HANDOFF NOTES: To ship to production, fill .env.deploy from .env.deploy.example and run deploy.sh; nginx.conf ready for the host.
+
+## JN-021 : Product Owner - Stage 2 - UPDATE - 2026-06-15
+- AGENT: product-owner
+- STAGE: 2
+- EVENT: Start
+- DATE: 2026-06-15
+- GATE RESULT: In Progress
+- ARTIFACTS READ: 2-USE-CASES.md, 0-IDEA.md, 1-BRAINSTORM.md
+- ARTIFACTS WRITTEN: (pending) 2-USE-CASES.md
+- SUMMARY: Refining the approved use cases to make the steam pipes read as surface-mounted runs to labelled disk/network boxes and to place the RAM/VRAM water above the CPU/GPU flames.
+- ISSUES: None
+- HANDOFF NOTES: Keep UC IDs unchanged; update the stage 2 status and gate after the wording change is finalized.
+
+## JN-021 : Product Owner - Stage 2 - COMPLETE - 2026-06-15
+- AGENT: product-owner
+- STAGE: 2
+- EVENT: Complete
+- DATE: 2026-06-15
+- GATE RESULT: PASS
+- ARTIFACTS READ: 2-USE-CASES.md, 0-IDEA.md, 1-BRAINSTORM.md
+- ARTIFACTS WRITTEN: 2-USE-CASES.md, PIPELINE-STATUS.md, X-Journal.md
+- SUMMARY: Updated the use-case intent to require surface-mounted steam pipes that terminate at labelled disk/network boxes and clarified the boiler stack so RAM/VRAM sit visually above the CPU/GPU flames. Stage 2 status refreshed to 2026-06-15. Postcheck PASS.
+- ISSUES: None
+- HANDOFF NOTES: Downstream artifacts should continue using the same UC IDs and the same approved scope.
+
+## JN-023 : Architect - Stage 6 - START - 2026-06-15
+- AGENT: architect
+- STAGE: 6
+- EVENT: Start
+- DATE: 2026-06-15
+- GATE RESULT: In Progress
+- ARTIFACTS READ: 2-USE-CASES.md, 5-REQUIREMENTS.md, 3-NARRATIVE-VISION.md, 4-CONCEPT-STORYBOARD.md
+- ARTIFACTS WRITTEN: (pending) 6-ARCHITECTURE-RECOMMENDATIONS.md, 6-PARTS LIST.md
+- SUMMARY: Refreshing Stage 6 architecture to carry BR-037/038/039 traceability and align the overall summary with the revised layout wording.
+- ISSUES: None
+- HANDOFF NOTES: Keep the existing stack; this is a traceability and status refresh rather than a new architecture direction.
+
+## JN-024 : Architect - Stage 6 - COMPLETE - 2026-06-15
+- AGENT: architect
+- STAGE: 6
+- EVENT: Complete
+- DATE: 2026-06-15
+- GATE RESULT: PASS
+- ARTIFACTS READ: 2-USE-CASES.md, 5-REQUIREMENTS.md, 3-NARRATIVE-VISION.md, 4-CONCEPT-STORYBOARD.md
+- ARTIFACTS WRITTEN: 6-ARCHITECTURE-RECOMMENDATIONS.md, 6-PARTS LIST.md, PIPELINE-STATUS.md, X-Journal.md
+- SUMMARY: Updated Stage 6 architecture and parts list to explicitly trace BR-037/038/039, note the surface-mounted pipe network and proportional boiler sizing, and refresh the stage status to 2026-06-15. Postcheck PASS for both artifacts.
+- ISSUES: None
+- HANDOFF NOTES: Downstream design remains unchanged; traceability now includes the redesign requirements.
+
+## JN-025 : Developer - Stage 10 - START - 2026-06-15
+- AGENT: developer
+- STAGE: 10
+- EVENT: Start
+- DATE: 2026-06-15
+- GATE RESULT: In Progress
+- ARTIFACTS READ: 7-DESIGN-INSTRUCTIONS.md, 8-TEXT-CONTENT.md, 9-GRAPHIC-ASSETS.md
+- ARTIFACTS WRITTEN: (pending) 10-BUILD/index.html, 10-RELEASE-NOTES.md
+- SUMMARY: Starting a Stage 10 follow-up to finish the boiler-first stack and explicit pipe-box rendering requested by the revised use cases.
+- ISSUES: None
+- HANDOFF NOTES: Keep the agent and snapshot schema unchanged; this is a presentation-only refinement.
+
+## JN-026 : Developer - Stage 10 - COMPLETE - 2026-06-15
+- AGENT: developer
+- STAGE: 10
+- EVENT: Complete
+- DATE: 2026-06-15
+- GATE RESULT: PASS
+- ARTIFACTS READ: 7-DESIGN-INSTRUCTIONS.md, 8-TEXT-CONTENT.md, 9-GRAPHIC-ASSETS.md
+- ARTIFACTS WRITTEN: 10-BUILD/index.html, 10-RELEASE-NOTES.md, PIPELINE-STATUS.md, X-Journal.md
+- SUMMARY: Finished the Stage 10 visual refinement: boilers now sit above the furnaces in the desktop and mobile grid, and the pipe canvas terminates at explicit DISK/NETWORK surface-mounted boxes while preserving the four flow labels. Local browser smoke confirmed the updated layout.
+- ISSUES: None
+- HANDOFF NOTES: The running build is aligned with the updated use cases; no agent or data schema changes were required.

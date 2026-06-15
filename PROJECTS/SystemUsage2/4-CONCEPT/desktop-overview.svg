@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="1000" height="640" fill="#15110d"/>
+  <rect x="0" y="0" width="1000" height="44" fill="#2a2622"/>
+  <text x="20" y="29" fill="#e8902a" font-size="18">THE BOILER ROOM — single viewport (Coal &amp; Brass)</text>
+  <circle cx="930" cy="22" r="7" fill="#3ad07a"/><text x="945" y="27" fill="#9c8f7e" font-size="11">live</text>
+
+  <rect x="16" y="60" width="320" height="250" rx="10" fill="#211b14" stroke="#b68a4e" stroke-width="2"/>
+  <text x="32" y="86" fill="#e8902a" font-size="15">CPU FURNACE</text>
+  <circle cx="120" cy="180" r="70" fill="#1a1510" stroke="#9c5b2e" stroke-width="6"/>
+  <path d="M120 180 L160 135" stroke="#e8902a" stroke-width="4"/>
+  <text x="120" y="186" fill="#e8902a" font-size="22" text-anchor="middle">63%</text>
+  <text x="120" y="262" fill="#9c8f7e" font-size="10" text-anchor="middle">overall gauge + ember glow</text>
+  <g>
+    <rect x="220" y="120" width="14" height="40" fill="#e8902a"/><rect x="240" y="135" width="14" height="25" fill="#cf7a25"/>
+    <rect x="260" y="110" width="14" height="50" fill="#e8902a"/><rect x="280" y="145" width="14" height="15" fill="#cf7a25"/>
+    <rect x="300" y="130" width="14" height="30" fill="#e8902a"/>
+    <text x="262" y="178" fill="#9c8f7e" font-size="10" text-anchor="middle">per-core flames</text>
+  </g>
+  <rect x="210" y="195" width="112" height="100" rx="4" fill="#181310" stroke="#5a4a33"/>
+  <text x="266" y="212" fill="#b68a4e" font-size="10" text-anchor="middle">TOP CPU</text>
+  <text x="218" y="232" fill="#dce6ea" font-size="9">chrome   41%</text>
+  <text x="218" y="250" fill="#dce6ea" font-size="9">node     22%</text>
+  <text x="218" y="268" fill="#dce6ea" font-size="9">code     9%</text>
+
+  <rect x="352" y="60" width="320" height="250" rx="10" fill="#211b14" stroke="#b68a4e" stroke-width="2"/>
+  <text x="368" y="86" fill="#e8902a" font-size="15">GPU FORGE</text>
+  <circle cx="456" cy="180" r="70" fill="#1a1510" stroke="#9c5b2e" stroke-width="6"/>
+  <path d="M456 180 L420 140" stroke="#e8902a" stroke-width="4"/>
+  <text x="456" y="186" fill="#e8902a" font-size="22" text-anchor="middle">38%</text>
+  <rect x="556" y="110" width="40" height="120" rx="4" fill="#241a12" stroke="#9c5b2e"/>
+  <rect x="556" y="170" width="40" height="60" rx="4" fill="#cf7a25"/>
+  <text x="576" y="248" fill="#9c8f7e" font-size="10" text-anchor="middle">VRAM crucible</text>
+
+  <rect x="16" y="326" width="320" height="250" rx="10" fill="#211b14" stroke="#b68a4e" stroke-width="2"/>
+  <text x="32" y="352" fill="#e8902a" font-size="15">MEMORY BOILER</text>
+  <rect x="60" y="370" width="80" height="180" rx="8" fill="#13100c" stroke="#9c5b2e" stroke-width="3"/>
+  <rect x="63" y="450" width="74" height="97" rx="6" fill="#c95a2a"/>
+  <circle cx="80" cy="465" r="4" fill="#ffd9a0"/><circle cx="110" cy="445" r="3" fill="#ffd9a0"/><circle cx="95" cy="480" r="3.5" fill="#ffd9a0"/>
+  <text x="100" y="566" fill="#9c8f7e" font-size="10" text-anchor="middle">rolling boil at high use</text>
+  <text x="175" y="400" fill="#dce6ea" font-size="11">used 11.2 / 16 GB</text>
+  <text x="175" y="422" fill="#9c8f7e" font-size="10">cached 3.1 GB</text>
+  <text x="175" y="442" fill="#9c8f7e" font-size="10">swap 0.4 GB</text>
+  <circle cx="250" cy="500" r="40" fill="none" stroke="#9c5b2e" stroke-width="14"/>
+  <path d="M250 500 L250 460 A40 40 0 0 1 285 520 Z" fill="#e8902a" opacity="0.7"/>
+  <text x="250" y="556" fill="#9c8f7e" font-size="9" text-anchor="middle">breakdown donut</text>
+
+  <rect x="352" y="326" width="320" height="250" rx="10" fill="#211b14" stroke="#b68a4e" stroke-width="2"/>
+  <text x="368" y="352" fill="#e8902a" font-size="15">DISK PRESSURE TANKS</text>
+  <g>
+    <rect x="380" y="375" width="50" height="150" rx="8" fill="#13100c" stroke="#9c5b2e" stroke-width="2"/><rect x="382" y="450" width="46" height="73" fill="#7a8a55"/>
+    <text x="405" y="540" fill="#9c8f7e" font-size="9" text-anchor="middle">/ 61%</text>
+    <rect x="450" y="375" width="50" height="150" rx="8" fill="#13100c" stroke="#9c5b2e" stroke-width="2"/><rect x="452" y="420" width="46" height="103" fill="#9a6f3f"/>
+    <text x="475" y="540" fill="#9c8f7e" font-size="9" text-anchor="middle">/home 78%</text>
+  </g>
+  <rect x="520" y="375" width="142" height="150" rx="4" fill="#181310" stroke="#5a4a33"/>
+  <text x="591" y="394" fill="#b68a4e" font-size="10" text-anchor="middle">I/O rates</text>
+  <text x="530" y="416" fill="#dce6ea" font-size="10">read  124 MB/s</text>
+  <text x="530" y="436" fill="#dce6ea" font-size="10">write  38 MB/s</text>
+
+  <rect x="688" y="60" width="296" height="516" rx="10" fill="#211b14" stroke="#b68a4e" stroke-width="2"/>
+  <text x="704" y="86" fill="#e8902a" font-size="15">NETWORK STEAM PIPES</text>
+  <rect x="704" y="110" width="264" height="40" rx="20" fill="#13100c" stroke="#9c5b2e" stroke-width="2"/>
+  <circle cx="740" cy="130" r="5" fill="#3fb4c4"/><circle cx="780" cy="130" r="5" fill="#3fb4c4"/><circle cx="820" cy="130" r="5" fill="#3fb4c4"/>
+  <text x="836" y="180" fill="#dce6ea" font-size="11" text-anchor="middle">TX 4.2 MB/s · RX 11.8 MB/s</text>
+  <rect x="704" y="200" width="264" height="120" rx="4" fill="#181310" stroke="#5a4a33"/>
+  <polyline points="710,300 740,270 770,290 800,250 830,275 860,240 890,260 960,230" fill="none" stroke="#3fb4c4" stroke-width="2"/>
+  <polyline points="710,310 740,300 770,305 800,295 830,300 860,288 890,295 960,285" fill="none" stroke="#e8902a" stroke-width="2"/>
+  <text x="836" y="338" fill="#9c8f7e" font-size="9" text-anchor="middle">rolling 60s TX/RX</text>
+
+  <rect x="704" y="360" width="264" height="200" rx="6" fill="#1c1610" stroke="#b68a4e" stroke-width="1.5"/>
+  <text x="720" y="384" fill="#e8902a" font-size="14">⚙ ALERT CONTROL</text>
+  <text x="720" y="410" fill="#dce6ea" font-size="10">CPU  ▮▮▮▮▮▯▯  85%</text>
+  <text x="720" y="432" fill="#dce6ea" font-size="10">RAM  ▮▮▮▮▮▮▯  90%</text>
+  <text x="720" y="454" fill="#dce6ea" font-size="10">DISK ▮▮▮▮▮▮▮  95%</text>
+  <circle cx="730" cy="478" r="6" fill="#3ad07a"/><circle cx="760" cy="478" r="6" fill="#e8b43a"/><circle cx="790" cy="478" r="6" fill="#c5402b"/>
+  <text x="720" y="504" fill="#9c8f7e" font-size="9">indicator lamps · drag valves to set thresholds</text>
+  <text x="720" y="534" fill="#9c8f7e" font-size="9">notify: browser ✓  desktop ✓  webhook ▢</text>
+</svg>

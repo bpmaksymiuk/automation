@@ -1,0 +1,45 @@
+/* The Boiler Room - design tokens (CSS custom properties)
+   Source: 4-CONCEPT-STORYBOARD.md direction, revised v1.1 to the green/amber
+   Verdigris Boiler palette (green primary, yellow/amber accents, dark base).
+   CPU flame stays red and GPU flame stays blue as deliberate contrast accents.
+   Use: import or paste into :root of 10-BUILD/index.html. */
+:root {
+  /* surfaces (dark green-black) */
+  --bg-deep: #0c140c;
+  --bg-surface: #111d11;
+  --bg-panel: #16241a;
+  --border: #3f6a32;
+  --border-soft: #20351f;
+
+  /* text */
+  --text-primary: #eaf5e0;
+  --text-secondary: #cfe6bf;
+  --text-muted: #b9d6a8;
+
+  /* green / amber accents */
+  --brass-light: #a9e07a;
+  --brass: #7bbf4a;       /* green primary frame */
+  --brass-dark: #4f8f37;
+  --brass-shadow: #1d3415;
+
+  /* metric / state colours */
+  --ember: #e8d24a;     /* yellow accent */
+  --cpu-flame: #e0492c; /* CPU furnace flame (red, contrast accent) */
+  --gpu-flame: #3a86e0; /* GPU furnace flame (blue, contrast accent) */
+  --water: #5fb86a;     /* boiler liquid (green) */
+  --water-light: #9be08a;
+  --steam: #e9f6c9;     /* steam-pipe wisps */
+
+  /* alarm zones */
+  --ok: #5fd35f;
+  --ok-text: #6fe06f;
+  --warn: #c7a72e;
+  --warn-text: #f2e15a;
+  --crit: #b91c1c;
+  --crit-text: #f85149;
+
+  /* type + shape */
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --radius-lg: 12px;
+  --radius-sm: 6px;
+}

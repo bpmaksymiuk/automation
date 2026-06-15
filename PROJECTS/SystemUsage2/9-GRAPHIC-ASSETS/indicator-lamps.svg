@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="120" viewBox="0 0 360 120" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <radialGradient id="green" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#7ee787"/><stop offset="100%" stop-color="#1a7f37"/></radialGradient>
+    <radialGradient id="amber" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#ffd866"/><stop offset="100%" stop-color="#9e6a03"/></radialGradient>
+    <radialGradient id="red" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#ff8a80"/><stop offset="100%" stop-color="#b91c1c"/></radialGradient>
+  </defs>
+  <rect width="360" height="120" rx="10" fill="#161b22" stroke="#3d444d"/>
+  <circle cx="80" cy="50" r="26" fill="url(#green)" stroke="#3d2a06" stroke-width="3"/>
+  <circle cx="72" cy="42" r="7" fill="#ffffff" opacity="0.5"/>
+  <text x="80" y="100" fill="#3fb950" font-size="13" text-anchor="middle">NORMAL</text>
+  <circle cx="180" cy="50" r="26" fill="url(#amber)" stroke="#3d2a06" stroke-width="3"/>
+  <circle cx="172" cy="42" r="7" fill="#ffffff" opacity="0.5"/>
+  <text x="180" y="100" fill="#d29922" font-size="13" text-anchor="middle">WARNING</text>
+  <circle cx="280" cy="50" r="26" fill="url(#red)" stroke="#3d2a06" stroke-width="3"/>
+  <circle cx="272" cy="42" r="7" fill="#ffffff" opacity="0.5"/>
+  <text x="280" y="100" fill="#f85149" font-size="13" text-anchor="middle">CRITICAL</text>
+</svg>

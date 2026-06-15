@@ -4,6 +4,25 @@
 - **STATUS UPDATED:** 2026-06-15
 - **AUTHOR:** Developer
 
+## RN-001 : v0.1.0 — 2026-06-15 — Stage 10 implementation and live client
+
+- **CHANGED FILES:**
+  - `./10-BUILD/agent.py` — Python metrics agent for the local dashboard. Collects system snapshots with `psutil`, probes optional GPU state via `nvidia-smi`, and serves `/`, `/api/metrics`, and `/api/stream` from a loopback `ThreadingHTTPServer`.
+  - `./10-BUILD/index.html` — self-contained cockpit client with the Verdigris Boiler layout, live/demo data source switching, canvas-based flames/boilers/pipe chart, alert thresholds, tooltips, history modal, and reduced-motion support.
+  - `./10-BUILD/README.md` — run guide for demo mode and live mode.
+- **IMPLEMENTATION CAVEATS:**
+  - The client uses same-origin `/api/stream` and `/api/metrics` when served over HTTP; file:// fallback still targets `127.0.0.1:8077` for local viewing.
+  - Demo mode is the automatic fallback when the agent is unavailable; the in-page "Stoke the furnace" control only affects demo mode.
+  - Browser verification was run against `http://127.0.0.1:8078/`; the connection badge reached `live` and the browser error collector stayed empty after reload.
+- **UC/BR COVERAGE:** UC-001..UC-013; BR-001..BR-039.
+- **NOTES:** Stage 10 was validated locally with `python3 -m py_compile`, a live agent on `127.0.0.1:8078`, and a browser reload check confirming the client booted cleanly without JS errors.
+
+GATE 10: PASS# Release Notes — The Boiler Room
+
+- **STATUS:** PASS
+- **STATUS UPDATED:** 2026-06-15
+- **AUTHOR:** Developer
+
 ## RN-003 : v0.2.1 — 2026-06-15 — boiler-first stack and surface-mounted pipe boxes
 
 - **CHANGED FILES:**
