@@ -4,12 +4,16 @@ description: >
   Observes pipeline work for compliance violations and records independent,
   evidence-based findings.
 tools:
-  - create_file
   - read_file
+  - create_file
+  - replace_string_in_file
+  - multi_replace_string_in_file
   - grep_search
   - file_search
-  - apply_patch
+  - semantic_search
   - run_in_terminal
+  - manage_todo_list
+  - memory
 ---
 
 ## Pipeline Role

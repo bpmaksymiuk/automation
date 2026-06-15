@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="900" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1400" height="900" fill="#0d1117"/>
+  
+  <!-- Title -->
+  <text x="20" y="40" font-size="24" font-weight="bold" fill="#58a6ff">
+    BrowserController: Screen Flow Diagram
+  </text>
+  
+  <!-- Start Node -->
+  <circle cx="700" cy="80" r="30" fill="#30a46c" stroke="#30a46c" stroke-width="2"/>
+  <text x="700" y="85" font-size="12" font-weight="bold" fill="#0d1117" text-anchor="middle">Start</text>
+  
+  <!-- Arrow down -->
+  <line x1="700" y1="110" x2="700" y2="150" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Main Menu Screen -->
+  <rect x="550" y="150" width="300" height="80" fill="#161b22" stroke="#58a6ff" stroke-width="2" rx="8"/>
+  <text x="700" y="180" font-size="12" font-weight="bold" fill="#58a6ff" text-anchor="middle">Main Menu</text>
+  <text x="700" y="200" font-size="10" fill="#d0d0d0" text-anchor="middle">New / Open / Schedule</text>
+  <text x="700" y="217" font-size="10" fill="#d0d0d0" text-anchor="middle">Workflow</text>
+  
+  <!-- Split: Record vs Run -->
+  <line x1="700" y1="230" x2="700" y2="280" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Decision: Record or Run -->
+  <polygon points="700,300 750,350 700,400 650,350" fill="#d29922" stroke="#d29922" stroke-width="2"/>
+  <text x="700" y="355" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">Record or</text>
+  <text x="700" y="370" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">Run?</text>
+  
+  <!-- LEFT PATH: Recording Mode -->
+  
+  <!-- Arrow to Recording -->
+  <line x1="650" y1="350" x2="350" y2="350" stroke="#30a46c" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  <text x="480" y="340" font-size="10" fill="#30a46c" font-weight="bold">Record</text>
+  
+  <!-- Recording Mode Screen -->
+  <rect x="50" y="310" width="300" height="80" fill="#161b22" stroke="#30a46c" stroke-width="2" rx="8"/>
+  <text x="200" y="340" font-size="12" font-weight="bold" fill="#30a46c" text-anchor="middle">Recording Mode</text>
+  <text x="200" y="360" font-size="10" fill="#d0d0d0" text-anchor="middle">Navigate & Capture</text>
+  <text x="200" y="377" font-size="10" fill="#d0d0d0" text-anchor="middle">Steps</text>
+  
+  <!-- Arrow down to Script Generation -->
+  <line x1="200" y1="390" x2="200" y2="440" stroke="#30a46c" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  
+  <!-- Script Generated -->
+  <rect x="50" y="440" width="300" height="80" fill="#161b22" stroke="#30a46c" stroke-width="2" rx="8"/>
+  <text x="200" y="470" font-size="12" font-weight="bold" fill="#30a46c" text-anchor="middle">Script Generated</text>
+  <text x="200" y="490" font-size="10" fill="#d0d0d0" text-anchor="middle">.script file created</text>
+  <text x="200" y="507" font-size="10" fill="#d0d0d0" text-anchor="middle">Ready to run</text>
+  
+  <!-- Arrow down to Save -->
+  <line x1="200" y1="520" x2="200" y2="570" stroke="#30a46c" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  
+  <!-- Save Screen -->
+  <rect x="50" y="570" width="300" height="80" fill="#161b22" stroke="#30a46c" stroke-width="2" rx="8"/>
+  <text x="200" y="600" font-size="12" font-weight="bold" fill="#30a46c" text-anchor="middle">Save Workflow</text>
+  <text x="200" y="620" font-size="10" fill="#d0d0d0" text-anchor="middle">Name & store script</text>
+  <text x="200" y="637" font-size="10" fill="#d0d0d0" text-anchor="middle">for future use</text>
+  
+  <!-- Arrow left to End -->
+  <line x1="50" y1="610" x2="20" y2="610" stroke="#30a46c" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  <circle cx="10" cy="610" r="8" fill="#30a46c" stroke="#30a46c" stroke-width="2"/>
+  
+  <!-- RIGHT PATH: Running Mode -->
+  
+  <!-- Arrow to Running -->
+  <line x1="750" y1="350" x2="1050" y2="350" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <text x="900" y="340" font-size="10" fill="#58a6ff" font-weight="bold">Run</text>
+  
+  <!-- Running Mode Screen -->
+  <rect x="1050" y="310" width="300" height="80" fill="#161b22" stroke="#58a6ff" stroke-width="2" rx="8"/>
+  <text x="1200" y="340" font-size="12" font-weight="bold" fill="#58a6ff" text-anchor="middle">Running Mode</text>
+  <text x="1200" y="360" font-size="10" fill="#d0d0d0" text-anchor="middle">Execute script</text>
+  <text x="1200" y="377" font-size="10" fill="#d0d0d0" text-anchor="middle">steps</text>
+  
+  <!-- Decision: Failure? -->
+  <line x1="1200" y1="390" x2="1200" y2="440" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Failure Decision -->
+  <polygon points="1200,460 1250,510 1200,560 1150,510" fill="#d29922" stroke="#d29922" stroke-width="2"/>
+  <text x="1200" y="515" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">Selector</text>
+  <text x="1200" y="530" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">Found?</text>
+  
+  <!-- Success path (right arrow) -->
+  <line x1="1250" y1="510" x2="1300" y2="510" stroke="#30a46c" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  <line x1="1300" y1="510" x2="1300" y2="580" stroke="#30a46c" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  
+  <!-- Failure Recovery -->
+  <line x1="1150" y1="510" x2="1000" y2="510" stroke="#f85149" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+  <text x="1070" y="500" font-size="10" fill="#f85149" font-weight="bold">No</text>
+  
+  <rect x="750" y="470" width="300" height="80" fill="#161b22" stroke="#f85149" stroke-width="2" rx="8"/>
+  <text x="900" y="500" font-size="12" font-weight="bold" fill="#f85149" text-anchor="middle">Failure Recovery</text>
+  <text x="900" y="520" font-size="10" fill="#d0d0d0" text-anchor="middle">Try alternative selectors</text>
+  <text x="900" y="537" font-size="10" fill="#d0d0d0" text-anchor="middle">& correct script</text>
+  
+  <!-- Arrow from Recovery to Results -->
+  <line x1="900" y1="550" x2="900" y2="620" stroke="#30a46c" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  <text x="920" y="590" font-size="9" fill="#30a46c">Corrected</text>
+  
+  <!-- Success path continues (join arrows) -->
+  <line x1="1300" y1="580" x2="1000" y2="580" stroke="#30a46c" stroke-width="2"/>
+  <text x="1150" y="570" font-size="9" fill="#30a46c">Yes / Corrected</text>
+  
+  <!-- Results Dashboard (joined point) -->
+  <rect x="750" y="580" width="300" height="80" fill="#161b22" stroke="#58a6ff" stroke-width="2" rx="8"/>
+  <text x="900" y="610" font-size="12" font-weight="bold" fill="#58a6ff" text-anchor="middle">Results Dashboard</text>
+  <text x="900" y="630" font-size="10" fill="#d0d0d0" text-anchor="middle">View extracted data</text>
+  <text x="900" y="647" font-size="10" fill="#d0d0d0" text-anchor="middle">& logs</text>
+  
+  <!-- Arrow down to Export/End -->
+  <line x1="900" y1="660" x2="900" y2="730" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  
+  <!-- Export/Continue -->
+  <rect x="750" y="730" width="300" height="80" fill="#161b22" stroke="#58a6ff" stroke-width="2" rx="8"/>
+  <text x="900" y="760" font-size="12" font-weight="bold" fill="#58a6ff" text-anchor="middle">Export / Schedule</text>
+  <text x="900" y="780" font-size="10" fill="#d0d0d0" text-anchor="middle">Results or configure</text>
+  <text x="900" y="797" font-size="10" fill="#d0d0d0" text-anchor="middle">recurring runs</text>
+  
+  <!-- Arrow to End -->
+  <line x1="750" y1="770" x2="1380" y2="770" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <circle cx="1390" cy="770" r="8" fill="#58a6ff" stroke="#58a6ff" stroke-width="2"/>
+  
+  <!-- Legend -->
+  <text x="20" y="850" font-size="10" fill="#6b7280">Recording path (green): Navigate → Generate script → Save workflow</text>
+  <text x="20" y="870" font-size="10" fill="#6b7280">Running path (blue): Execute → Handle failures → View results → Export or schedule</text>
+  
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#6b7280"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#30a46c"/>
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#58a6ff"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#f85149"/>
+    </marker>
+  </defs>
+</svg>

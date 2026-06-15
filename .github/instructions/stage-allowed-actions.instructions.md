@@ -21,7 +21,7 @@ description: "Allowed read/write boundaries per stage for low-ambiguity executio
 | 6 | `2-USE-CASES.md`, `5-REQUIREMENTS.md` | `6-ARCHITECTURE-RECOMMENDATIONS.md`, `6-PARTS LIST.md`, `PIPELINE-STATUS.md`, `X-Journal.md` |
 | 7 | `2-USE-CASES.md`, `5-REQUIREMENTS.md`, `6-ARCHITECTURE-RECOMMENDATIONS.md`, `6-PARTS LIST.md` | `7-DESIGN-INSTRUCTIONS.md`, `PIPELINE-STATUS.md`, `X-Journal.md` |
 | 8 | `2-USE-CASES.md`, `7-DESIGN-INSTRUCTIONS.md` | `8-TEXT-CONTENT.md`, `8-TEXT/`, `PIPELINE-STATUS.md`, `X-Journal.md` |
-| 9 | `2-USE-CASES.md`, `7-DESIGN-INSTRUCTIONS.md`, `8-TEXT-CONTENT.md` | `9-GRAPHIC-ASSETS.md`, `9-GRAPHIC-ASSETS/`, `9-DIAGRAMS/`, `PIPELINE-STATUS.md`, `X-Journal.md` |
+| 9 | `2-USE-CASES.md`, `7-DESIGN-INSTRUCTIONS.md`, `8-TEXT-CONTENT.md` | `9-GRAPHIC-ASSETS.md`, `9-GRAPHIC-ASSETS/`, `9-DIAGRAMS/`, `9-RESOURCES/`, `PIPELINE-STATUS.md`, `X-Journal.md` |
 | 10 | `2-USE-CASES.md`, `7-DESIGN-INSTRUCTIONS.md`, `8-TEXT-CONTENT.md`, `9-GRAPHIC-ASSETS.md` | `10-RELEASE-NOTES.md`, `10-BUILD/`, `PIPELINE-STATUS.md`, `X-Journal.md` |
 | 11 | `2-USE-CASES.md`, `10-RELEASE-NOTES.md`, `10-BUILD/` | `11-TEST-CASES.md`, `11-TEST-REPORT.md`, `11-BUG-REPORT.md`, `11-TESTS/`, `PIPELINE-STATUS.md`, `X-Journal.md` |
 | 12 | `11-TEST-REPORT.md`, `10-BUILD/`, `11-TESTS/playwright.smoke.config.mjs` | `12-DEPLOYMENT-RESULTS.md`, `deploy.sh`, `.env.deploy`, `deploy/nginx.conf`, `PIPELINE-STATUS.md`, `X-Journal.md` |

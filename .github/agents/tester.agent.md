@@ -7,10 +7,14 @@ description: >
 tools:
   - read_file
   - create_file
-  - apply_patch
+  - replace_string_in_file
+  - multi_replace_string_in_file
   - grep_search
   - file_search
+  - semantic_search
   - run_in_terminal
+  - get_errors
+  - get_terminal_output
   - open_browser_page
   - read_page
   - click_element
@@ -18,6 +22,8 @@ tools:
   - hover_element
   - navigate_page
   - screenshot_page
+  - manage_todo_list
+  - memory
 ---
 
 ## Pipeline Role

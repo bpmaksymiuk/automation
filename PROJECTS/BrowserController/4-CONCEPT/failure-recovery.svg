@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#0d1117"/>
+  
+  <!-- Title -->
+  <text x="20" y="40" font-size="24" font-weight="bold" fill="#f85149">
+    BrowserController: Failure Recovery & Selector Correction
+  </text>
+  
+  <!-- Main Layout: Failure Details (left) + Page Inspector (right) -->
+  
+  <!-- Left: Recovery Attempts -->
+  <rect x="20" y="80" width="550" height="680" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="40" y="110" font-size="14" font-weight="bold" fill="#f85149">Selector Recovery Attempts</text>
+  
+  <!-- Failed selector -->
+  <rect x="40" y="130" width="510" height="60" fill="#3d1010" stroke="#f85149" stroke-width="2"/>
+  <text x="60" y="155" font-size="11" font-weight="bold" fill="#f85149">✗ FAILED: Original Selector</text>
+  <text x="60" y="175" font-size="10" font-family="monospace" fill="#f85149">a.newsLink:nth-child(1)</text>
+  <text x="60" y="190" font-size="9" fill="#d0d0d0">Reason: Element not found after page structure change</text>
+  
+  <!-- Strategy 1: CSS Fallback -->
+  <rect x="40" y="205" width="510" height="60" fill="#2d2d1f" stroke="#d29922" stroke-width="2"/>
+  <text x="60" y="230" font-size="11" font-weight="bold" fill="#d29922">⚠ TRYING: CSS Selector (Alt 1)</text>
+  <text x="60" y="250" font-size="10" font-family="monospace" fill="#d29922">a[data-article-link]:nth-child(1)</text>
+  <text x="60" y="265" font-size="9" fill="#d0d0d0">Status: No match found, moving to next strategy...</text>
+  
+  <!-- Strategy 2: XPath -->
+  <rect x="40" y="280" width="510" height="60" fill="#2d2d1f" stroke="#d29922" stroke-width="2"/>
+  <text x="60" y="305" font-size="11" font-weight="bold" fill="#d29922">⚠ TRYING: XPath (Alt 2)</text>
+  <text x="60" y="325" font-size="10" font-family="monospace" fill="#d29922">//a[@role="button"][1]</text>
+  <text x="60" y="340" font-size="9" fill="#d0d0d0">Status: No match found, moving to next strategy...</text>
+  
+  <!-- Strategy 3: Role-based (SUCCESS) -->
+  <rect x="40" y="355" width="510" height="60" fill="#1d3d1d" stroke="#30a46c" stroke-width="2"/>
+  <text x="60" y="380" font-size="11" font-weight="bold" fill="#30a46c">✓ SUCCESS: Role-Based Selector (Alt 3)</text>
+  <text x="60" y="400" font-size="10" font-family="monospace" fill="#30a46c">a[role="article"]:nth-child(1)</text>
+  <text x="60" y="415" font-size="9" fill="#d0d0d0">Element matched and clicked successfully!</text>
+  
+  <!-- Correction detail -->
+  <rect x="40" y="430" width="510" height="100" fill="#0d1117" stroke="#30a46c" stroke-width="1"/>
+  <text x="60" y="455" font-size="11" font-weight="bold" fill="#30a46c">✓ Script Correction Applied</text>
+  <text x="60" y="475" font-size="10" fill="#d0d0d0">Original line in script:</text>
+  <text x="60" y="490" font-size="9" font-family="monospace" fill="#999999">click selector "a.newsLink:nth-child(1)"</text>
+  <text x="60" y="510" font-size="10" fill="#30a46c">Updated line in script:</text>
+  <text x="60" y="525" font-size="9" font-family="monospace" fill="#30a46c">click selector "a[role=\"article\"]:nth-child(1)"</text>
+  
+  <!-- Action buttons -->
+  <rect x="40" y="550" width="100" height="40" fill="#30a46c" stroke="#30a46c" stroke-width="1" rx="4"/>
+  <text x="90" y="578" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">Accept</text>
+  
+  <rect x="160" y="550" width="100" height="40" fill="#d29922" stroke="#d29922" stroke-width="1" rx="4"/>
+  <text x="210" y="578" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">Review</text>
+  
+  <rect x="280" y="550" width="150" height="40" fill="#6b7280" stroke="#6b7280" stroke-width="1" rx="4"/>
+  <text x="355" y="578" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">Use Manual Selector</text>
+  
+  <!-- Right: Inspector View -->
+  <rect x="590" y="80" width="590" height="680" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="610" y="110" font-size="14" font-weight="bold" fill="#58a6ff">Page Inspector: Element Analysis</text>
+  
+  <!-- HTML structure view -->
+  <rect x="610" y="130" width="550" height="500" fill="#0d1117" stroke="#6b7280" stroke-width="1" font-family="monospace"/>
+  
+  <!-- HTML content -->
+  <text x="620" y="155" font-size="10" fill="#58a6ff">&lt;div class="search-results"&gt;</text>
+  <text x="640" y="175" font-size="10" fill="#d0d0d0">&lt;article class="result-item"&gt;</text>
+  <text x="660" y="195" font-size="10" fill="#d0d0d0">&lt;a role="article"</text>
+  <text x="680" y="215" font-size="10" fill="#30a46c">data-article-id="12345"&gt; ← FOUND HERE</text>
+  <text x="680" y="235" font-size="10" fill="#d0d0d0">Ukraine Receives Advanced Military Aid</text>
+  <text x="660" y="255" font-size="10" fill="#d0d0d0">&lt;/a&gt;</text>
+  <text x="640" y="275" font-size="10" fill="#d0d0d0">&lt;/article&gt;</text>
+  <text x="620" y="295" font-size="10" fill="#58a6ff">&lt;/div&gt;</text>
+  
+  <!-- Selector analysis -->
+  <rect x="610" y="650" width="550" height="80" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="620" y="670" font-size="11" font-weight="bold" fill="#58a6ff">Selector Recommendations</text>
+  <text x="620" y="690" font-size="10" fill="#d0d0d0">CSS: a[role="article"]:nth-child(1)</text>
+  <text x="620" y="710" font-size="10" fill="#6b7280">Robustness: Stable (uses semantic role attribute)</text>
+  
+  <!-- Legend -->
+  <text x="20" y="780" font-size="10" fill="#6b7280">Recovery UI shows all selector strategies tried and why. User can accept correction, review manually, or provide custom selector.</text>
+</svg>

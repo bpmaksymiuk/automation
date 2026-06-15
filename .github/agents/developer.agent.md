@@ -6,13 +6,21 @@ description: >
 tools:
   - read_file
   - create_file
-  - apply_patch
+  - replace_string_in_file
+  - multi_replace_string_in_file
   - grep_search
   - file_search
+  - semantic_search
+  - list_dir
   - fetch_webpage
   - github_repo
   - run_in_terminal
   - get_errors
+  - get_terminal_output
+  - vscode_listCodeUsages
+  - vscode_renameSymbol
+  - manage_todo_list
+  - memory
 ---
 
 ## Pipeline Role

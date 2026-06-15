@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#0d1117"/>
+  
+  <!-- Title -->
+  <text x="20" y="40" font-size="24" font-weight="bold" fill="#58a6ff">
+    BrowserController: Results Dashboard
+  </text>
+  
+  <!-- Main Layout: Summary (top) + Data Results (bottom) -->
+  
+  <!-- Summary Box -->
+  <rect x="20" y="80" width="1160" height="120" fill="#161b22" stroke="#30a46c" stroke-width="2"/>
+  <text x="40" y="110" font-size="14" font-weight="bold" fill="#30a46c">Run Summary</text>
+  
+  <!-- Status -->
+  <rect x="40" y="130" width="120" height="50" fill="#0d1117" stroke="#30a46c" stroke-width="1"/>
+  <text x="55" y="155" font-size="12" font-weight="bold" fill="#30a46c">✓ PASS</text>
+  <text x="55" y="170" font-size="10" fill="#999999">Script completed</text>
+  
+  <!-- Duration -->
+  <rect x="180" y="130" width="120" height="50" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="195" y="155" font-size="12" font-weight="bold" fill="#d0d0d0">12.5s</text>
+  <text x="195" y="170" font-size="10" fill="#999999">Total duration</text>
+  
+  <!-- Actions -->
+  <rect x="320" y="130" width="120" height="50" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="335" y="155" font-size="12" font-weight="bold" fill="#d0d0d0">5 / 5</text>
+  <text x="335" y="170" font-size="10" fill="#999999">Steps completed</text>
+  
+  <!-- Recoveries -->
+  <rect x="460" y="130" width="120" height="50" fill="#0d1117" stroke="#d29922" stroke-width="1"/>
+  <text x="475" y="155" font-size="12" font-weight="bold" fill="#d29922">1</text>
+  <text x="475" y="170" font-size="10" fill="#999999">Auto-corrections</text>
+  
+  <!-- Data Extracted -->
+  <rect x="600" y="130" width="120" height="50" fill="#0d1117" stroke="#30a46c" stroke-width="1"/>
+  <text x="615" y="155" font-size="12" font-weight="bold" fill="#30a46c">5 items</text>
+  <text x="615" y="170" font-size="10" fill="#999999">Extracted</text>
+  
+  <!-- Timestamp -->
+  <rect x="740" y="130" width="420" height="50" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="755" y="155" font-size="11" fill="#d0d0d0">Completed: 2026-06-10 14:32:45 UTC</text>
+  <text x="755" y="170" font-size="10" fill="#999999">Script: ukraine-news-search.script</text>
+  
+  <!-- Extracted Data Table -->
+  <rect x="20" y="220" width="1160" height="540" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="40" y="250" font-size="14" font-weight="bold" fill="#58a6ff">Extracted Data</text>
+  
+  <!-- Table header -->
+  <rect x="40" y="270" width="1120" height="35" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="50" y="295" font-size="11" font-weight="bold" fill="#d0d0d0">No.</text>
+  <text x="90" y="295" font-size="11" font-weight="bold" fill="#d0d0d0">Title</text>
+  <text x="550" y="295" font-size="11" font-weight="bold" fill="#d0d0d0">Summary</text>
+  <text x="1010" y="295" font-size="11" font-weight="bold" fill="#d0d0d0">Screenshot</text>
+  
+  <!-- Row 1 -->
+  <rect x="40" y="310" width="1120" height="55" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="50" y="325" font-size="10" fill="#d0d0d0">1</text>
+  <text x="90" y="325" font-size="10" fill="#58a6ff" font-weight="bold">Ukraine Receives Advanced Military Aid</text>
+  <text x="550" y="325" font-size="10" fill="#d0d0d0">NATO partners announce new support package...</text>
+  <rect x="1010" y="312" width="40" height="50" fill="#333333" stroke="#6b7280" stroke-width="1"/>
+  <text x="1030" y="340" font-size="9" fill="#999999" text-anchor="middle">📷</text>
+  
+  <!-- Row 2 -->
+  <rect x="40" y="370" width="1120" height="55" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="50" y="385" font-size="10" fill="#d0d0d0">2</text>
+  <text x="90" y="385" font-size="10" fill="#58a6ff" font-weight="bold">Ukraine Calls for Continued Support</text>
+  <text x="550" y="385" font-size="10" fill="#d0d0d0">President requests additional humanitarian aid...</text>
+  <rect x="1010" y="372" width="40" height="50" fill="#333333" stroke="#6b7280" stroke-width="1"/>
+  <text x="1030" y="400" font-size="9" fill="#999999" text-anchor="middle">📷</text>
+  
+  <!-- Row 3 -->
+  <rect x="40" y="430" width="1120" height="55" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="50" y="445" font-size="10" fill="#d0d0d0">3</text>
+  <text x="90" y="445" font-size="10" fill="#58a6ff" font-weight="bold">EU Pledges Long-Term Support for Ukraine</text>
+  <text x="550" y="445" font-size="10" fill="#d0d0d0">European Union announces multi-year assistance plan...</text>
+  <rect x="1010" y="432" width="40" height="50" fill="#333333" stroke="#6b7280" stroke-width="1"/>
+  <text x="1030" y="460" font-size="9" fill="#999999" text-anchor="middle">📷</text>
+  
+  <!-- Row 4 -->
+  <rect x="40" y="490" width="1120" height="55" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="50" y="505" font-size="10" fill="#d0d0d0">4</text>
+  <text x="90" y="505" font-size="10" fill="#58a6ff" font-weight="bold">Humanitarian Crisis Worsens in Ukraine</text>
+  <text x="550" y="505" font-size="10" fill="#d0d0d0">Millions displaced as conflict continues in eastern regions...</text>
+  <rect x="1010" y="492" width="40" height="50" fill="#333333" stroke="#6b7280" stroke-width="1"/>
+  <text x="1030" y="520" font-size="9" fill="#999999" text-anchor="middle">📷</text>
+  
+  <!-- Row 5 -->
+  <rect x="40" y="550" width="1120" height="55" fill="#0d1117" stroke="#6b7280" stroke-width="1"/>
+  <text x="50" y="565" font-size="10" fill="#d0d0d0">5</text>
+  <text x="90" y="565" font-size="10" fill="#58a6ff" font-weight="bold">Tech Companies Support Cybersecurity for Ukraine</text>
+  <text x="550" y="565" font-size="10" fill="#d0d0d0">Digital defense initiatives launched by major tech firms...</text>
+  <rect x="1010" y="552" width="40" height="50" fill="#333333" stroke="#6b7280" stroke-width="1"/>
+  <text x="1030" y="580" font-size="9" fill="#999999" text-anchor="middle">📷</text>
+  
+  <!-- Action buttons -->
+  <rect x="40" y="700" width="100" height="40" fill="#30a46c" stroke="#30a46c" stroke-width="1" rx="4"/>
+  <text x="90" y="728" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">Export</text>
+  
+  <rect x="160" y="700" width="100" height="40" fill="#58a6ff" stroke="#58a6ff" stroke-width="1" rx="4"/>
+  <text x="210" y="728" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">View Logs</text>
+  
+  <rect x="280" y="700" width="120" height="40" fill="#6b7280" stroke="#6b7280" stroke-width="1" rx="4"/>
+  <text x="340" y="728" font-size="11" font-weight="bold" fill="#0d1117" text-anchor="middle">View Script</text>
+  
+  <!-- Legend -->
+  <text x="520" y="728" font-size="10" fill="#6b7280">Results show all extracted data with screenshots. Easily export or re-run script.</text>
+</svg>

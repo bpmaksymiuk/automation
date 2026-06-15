@@ -16,7 +16,7 @@ applyTo: "PROJECTS/**"
 | 6 | Architect | 6-ARCHITECTURE-RECOMMENDATIONS.md, 6-PARTS LIST.md | .github/skills/architecture-and-parts-authoring/SKILL.md |
 | 7 | Technical Lead | 7-DESIGN-INSTRUCTIONS.md | .github/skills/design-instructions-authoring/SKILL.md |
 | 8 | Writer | 8-TEXT-CONTENT.md, 8-TEXT/ | .github/skills/content-writing-authoring/SKILL.md |
-| 9 | Graphic Artist | 9-GRAPHIC-ASSETS.md, 9-GRAPHIC-ASSETS/, 9-DIAGRAMS/ | .github/skills/graphic-artwork-authoring/SKILL.md |
+| 9 | Graphic Artist | 9-GRAPHIC-ASSETS.md, 9-GRAPHIC-ASSETS/, 9-DIAGRAMS/, 9-RESOURCES/ | .github/skills/graphic-artwork-authoring/SKILL.md |
 | 10 | Developer | 10-RELEASE-NOTES.md, 10-BUILD/ | .github/skills/implementation-stage/SKILL.md, .github/skills/release-notes-writing/SKILL.md |
 | 11 | Tester | 11-TEST-CASES.md, 11-TEST-REPORT.md, 11-BUG-REPORT.md, 11-TESTS/specs/ | .github/skills/test-case-authoring/SKILL.md, .github/skills/test-report-writing/SKILL.md, .github/skills/bug-report-writing/SKILL.md |
 | 12 | Prod Ops | `12-DEPLOYMENT-RESULTS.md`, `deploy.sh`, `.env.deploy`, `deploy/nginx.conf`, `11-TESTS/playwright.smoke.config.mjs` | .github/skills/prod-ops/SKILL.md |

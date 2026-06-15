@@ -11,9 +11,12 @@ Design rules used in every prompt:
 
 ## Included Prompts
 
-- `01-do-it-all-stage-execution.prompt.md`
-- `02-harden-for-dumb-models.prompt.md`
-- `03-pipeline-controls-change.prompt.md`
-- `04-objective-model-selection.prompt.md`
-- `05-stage7-di-quality-upgrade.prompt.md`
-- `06-read-only-stage-audit.prompt.md`
+- `01-do-it-all-stage-execution.prompt.md` — Execute one stage end-to-end with validation
+- `02-harden-for-dumb-models.prompt.md` — Add deterministic guardrails to reduce ambiguity
+- `03-pipeline-controls-change.prompt.md` — Safely edit `.github/` pipeline controls
+- `04-objective-model-selection.prompt.md` — Score and select the cheapest sufficient model
+- `05-stage7-di-quality-upgrade.prompt.md` — Make DI records implementation-ready
+- `06-read-only-stage-audit.prompt.md` — Status check without editing files
+- `07-run-auditor-after-stage.prompt.md` — Run Auditor compliance check after any stage
+- `08-resume-pipeline.prompt.md` — Pick up from the current stage and continue
+- `09-full-traceability-audit.prompt.md` — Verify UC-ID coverage across all downstream artifacts

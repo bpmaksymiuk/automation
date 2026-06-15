@@ -6,7 +6,7 @@
 
 ## When to Use
 
-Invoke at Stage 5 (Business Analyst). Use it when deriving atomic, testable, shall-language requirements from approved use cases and lightweight research. The BA must conduct research to validate that requirements are implementable and records research sources inline in `5-REQUIREMENTS.md`. Produces `5-REQUIREMENTS.md`. Upstream inputs: `2-USE-CASES.md`, research sources cited inline. Every requirement must be derivable from a use case — do not invent requirements without a UC source.
+Invoke at Stage 5 (Business Analyst). Use it when deriving atomic, testable, shall-language requirements from approved use cases and lightweight research. The BA must conduct research to validate that requirements are implementable and records research sources inline in `5-REQUIREMENTS.md`. Produces `5-REQUIREMENTS.md`. Upstream inputs: `2-USE-CASES.md`, `3-NARRATIVE-VISION.md`, `4-CONCEPT-STORYBOARD.md` research sources cited inline. Every requirement must be derivable from a use case — do not invent requirements without a UC source.
 
 ---
 

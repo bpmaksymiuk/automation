@@ -1,0 +1,13 @@
+{
+  "name": "boiler-room-stage11-tests",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Stage 11 formal verification specs for The Boiler Room (SystemUsage)",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.50.0"
+  }
+}

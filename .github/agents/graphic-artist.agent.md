@@ -9,9 +9,11 @@ description: >
 tools:
   - read_file
   - create_file
-  - apply_patch
+  - replace_string_in_file
+  - multi_replace_string_in_file
   - grep_search
   - file_search
+  - semantic_search
   - list_dir
   - fetch_webpage
   - open_browser_page
@@ -22,6 +24,8 @@ tools:
   - screenshot_page
   - view_image
   - run_in_terminal
+  - manage_todo_list
+  - memory
 ---
 
 ## Pipeline Role

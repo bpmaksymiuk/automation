@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="340" viewBox="0 0 240 340" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2b333d"/>
+      <stop offset="50%" stop-color="#3d444d"/>
+      <stop offset="100%" stop-color="#1b2027"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#58c0ff"/>
+      <stop offset="100%" stop-color="#1f6feb"/>
+    </linearGradient>
+    <linearGradient id="brassRim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5d488"/>
+      <stop offset="100%" stop-color="#8a6314"/>
+    </linearGradient>
+  </defs>
+  <!-- top cap -->
+  <rect x="40" y="14" width="160" height="26" rx="8" fill="url(#brassRim)" stroke="#3d2a06"/>
+  <!-- glass tube -->
+  <rect x="60" y="40" width="120" height="260" rx="14" fill="url(#glass)" stroke="#3d2a06" stroke-width="3"/>
+  <!-- water fill (id height controlled at runtime) -->
+  <clipPath id="tubeclip"><rect x="63" y="43" width="114" height="254" rx="12"/></clipPath>
+  <g clip-path="url(#tubeclip)">
+    <rect id="boiler-water" x="63" y="150" width="114" height="150" fill="url(#water)"/>
+    <!-- bubbles -->
+    <g fill="#cde9ff" opacity="0.85">
+      <circle cx="92" cy="250" r="5"/><circle cx="120" cy="225" r="7"/>
+      <circle cx="150" cy="260" r="4"/><circle cx="108" cy="278" r="6"/>
+      <circle cx="135" cy="200" r="5"/>
+    </g>
+  </g>
+  <!-- bottom cap + flame slot -->
+  <rect x="40" y="300" width="160" height="26" rx="8" fill="url(#brassRim)" stroke="#3d2a06"/>
+  <!-- scale ticks -->
+  <g stroke="#8b949e" stroke-width="2">
+    <line x1="180" y1="70" x2="192" y2="70"/><line x1="180" y1="125" x2="192" y2="125"/>
+    <line x1="180" y1="180" x2="192" y2="180"/><line x1="180" y1="235" x2="192" y2="235"/>
+  </g>
+  <text x="120" y="330" fill="#d29922" font-size="12" text-anchor="middle" letter-spacing="2" dy="-2">BOILER</text>
+</svg>

@@ -8,8 +8,10 @@ description: "Create a new pipeline project folder with minimal starter files."
 - 0-IDEA.md
 - PIPELINE-STATUS.md
 - X-Journal.md
+- X-AUDIT-REPORT.md
 - deploy.sh
 - .env.deploy
+- .gitignore (must contain `.env.deploy` at minimum)
 
 ## Do Not Create
 Do not create stage artifact files (1..12 outputs). Those are stage-owned.

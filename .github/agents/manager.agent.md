@@ -7,10 +7,16 @@ description: >
   repeat.
 tools:
   - read_file
+  - create_file
+  - replace_string_in_file
+  - multi_replace_string_in_file
   - grep_search
   - file_search
-  - apply_patch
+  - semantic_search
+  - list_dir
   - run_in_terminal
+  - manage_todo_list
+  - memory
 ---
 
 ## Pipeline Role

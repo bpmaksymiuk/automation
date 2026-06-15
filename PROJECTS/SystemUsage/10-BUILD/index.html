@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Boiler Room</title>
+<style>
+:root{
+  --oil:#0c140c; --iron:#16241a; --brass:#7bbf4a; --copper:#4f8f37;
+  --ember:#e8d24a; --amber:#f2e15a; --alarm:#d2463a; --ok:#5fd35f;
+  --text:#eaf5e0; --muted:#b9d6a8;
+  --cpu-flame:#e0492c; --gpu-flame:#3a86e0;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--oil); color:var(--text);
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+#topbar{
+  display:flex; align-items:center; gap:16px;
+  height:52px; padding:0 16px;
+  background:linear-gradient(#1c2e1c,#101a10);
+  border-bottom:2px solid var(--brass);
+}
+#topbar h1{
+  font-size:18px; letter-spacing:3px; margin:0; color:var(--amber);
+  text-shadow:0 1px 0 #000;
+}
+#conn{
+  font-size:12px; letter-spacing:1px; padding:3px 10px; border-radius:10px;
+  border:1px solid var(--brass); text-transform:uppercase;
+}
+#conn[data-state=live]{color:var(--ok); border-color:var(--ok)}
+#conn[data-state=demo]{color:var(--amber); border-color:var(--amber)}
+#conn[data-state=disconnected]{color:var(--alarm); border-color:var(--alarm)}
+.spacer{flex:1}
+#topbar button{
+  background:var(--iron); color:var(--text); border:1px solid var(--brass);
+  border-radius:6px; padding:6px 12px; cursor:pointer; font-size:13px;
+}
+#topbar button:hover{background:#21341f}
+
+#room{
+  display:grid; gap:12px; padding:12px;
+  grid-template-columns:1.25fr 1fr;
+  grid-template-rows:auto auto 1fr;
+  grid-template-areas:
+    "furnaces pipes"
+    "boilers  pipes"
+    "procs    pipes";
+  height:calc(100vh - 52px); overflow:hidden;
+}
+#panel-furnaces{grid-area:furnaces}
+#panel-boilers{grid-area:boilers}
+#panel-procs{grid-area:procs}
+#panel-pipes{grid-area:pipes}
+
+.panel{
+  position:relative; background:radial-gradient(circle at 30% 20%,#1a2c1a,#0c140c);
+  border:2px solid var(--brass); border-radius:10px; padding:10px 12px;
+  box-shadow:inset 0 0 18px rgba(0,0,0,.7); overflow:hidden;
+  display:flex; flex-direction:column; min-height:0;
+}
+.panel>h2{
+  margin:0 0 8px; font-size:14px; letter-spacing:2px; color:var(--amber);
+  -webkit-user-select:none; user-select:none;
+}
+.furnace-row,.boiler-row{display:flex; gap:12px; flex:1; min-height:0}
+.boiler-row{align-items:flex-end}
+.card{
+  flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; min-width:0;
+  background:#0e1a0e; border:1px solid var(--copper); border-radius:8px; padding:8px;
+  position:relative;
+}
+.card-title{
+  margin:0; font-size:12px; letter-spacing:2px; color:var(--ember);
+  cursor:pointer; -webkit-user-select:none; user-select:none;
+  display:flex; align-items:center; gap:8px; width:100%;
+}
+.card-title .lamp{margin-left:auto}
+.lamp{
+  width:12px; height:12px; border-radius:50%; display:inline-block;
+  background:var(--ok); box-shadow:0 0 6px currentColor; border:1px solid #0007;
+}
+.lamp[data-state=normal]{background:var(--ok)}
+.lamp[data-state=warning]{background:var(--amber)}
+.lamp[data-state=critical]{background:var(--alarm)}
+.card.alarm{border-color:var(--alarm); animation:shudder .3s linear infinite}
+canvas,svg{display:block}
+.readout{font-size:12px; color:var(--muted); line-height:1.5; text-align:center; width:100%}
+.readout b{color:var(--text)}
+
+#cpu-flame,#gpu-flame{width:120px; height:150px; flex:none}
+#cpu-cores{width:100%}
+#mem-tank,#vram-tank{align-self:center}
+
+#panel-pipes{}
+#pipe-canvas{width:100%; flex:1; min-height:160px}
+.pipe-cards{display:flex; gap:10px}
+.pipe-cards .card{flex:1}
+#disk-tanks{display:flex; gap:10px; align-items:flex-end; min-height:60px; width:100%; justify-content:center}
+.disk-tank{flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10px; color:var(--muted)}
+.disk-tank .vessel{width:100%; max-width:46px; height:64px; border:2px solid var(--brass); border-radius:6px;
+  background:#081008; position:relative; overflow:hidden}
+.disk-tank .fill{position:absolute; left:0; bottom:0; width:100%;
+  background:linear-gradient(var(--ember),var(--alarm))}
+#net-chart{width:100%}
+
+#panel-procs .proc-row{display:flex; gap:14px; flex:1; min-height:0}
+.proc-col{flex:1; min-width:0; display:flex; flex-direction:column}
+.proc-h{font-size:11px; letter-spacing:1px; color:var(--brass); margin-bottom:4px}
+table{width:100%; border-collapse:collapse; font-size:11px; color:var(--muted)}
+table th{text-align:left; color:var(--brass); font-weight:600; border-bottom:1px solid #2c4a26}
+table td{padding:1px 4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:110px}
+
+#panel-alerts{
+  position:fixed; right:14px; bottom:14px; width:300px; max-height:70vh; overflow:auto;
+  background:linear-gradient(#1a2c1a,#0c140c); border:2px solid var(--brass);
+  border-radius:10px; padding:12px; z-index:30; box-shadow:0 8px 28px #000a;
+}
+#panel-alerts[hidden]{display:none}
+#panel-alerts h2{margin:0 0 8px; font-size:14px; letter-spacing:2px; color:var(--amber)}
+.thr-row{display:flex; align-items:center; gap:8px; margin:6px 0; font-size:12px}
+.thr-row label{width:42px; color:var(--brass)}
+.thr-row input[type=range]{flex:1}
+.thr-row .val{width:34px; text-align:right; color:var(--text)}
+.alerts-sep{border-color:#2c4a26}
+.notify-row{display:flex; align-items:center; gap:6px; font-size:12px; margin:6px 0; color:var(--muted)}
+.notify-col{flex-direction:column; align-items:stretch}
+#webhook-url{width:100%; background:#081008; border:1px solid var(--brass); color:var(--text);
+  border-radius:4px; padding:4px 6px; font-size:12px}
+#btn-stoke{width:100%; margin-top:10px; background:var(--copper); color:var(--text);
+  border:1px solid var(--brass); border-radius:6px; padding:8px; cursor:pointer; font-size:13px}
+#btn-stoke:hover{background:#5fa843}
+
+#tooltip{
+  position:fixed; z-index:50; pointer-events:none;
+  background:#081008; color:var(--text); border:1px solid var(--brass);
+  border-radius:6px; padding:5px 9px; font-size:12px; box-shadow:0 4px 12px #000a;
+}
+#tooltip[hidden]{display:none}
+
+#history-modal{
+  border:2px solid var(--brass); border-radius:10px; background:#0e1a0e; color:var(--text);
+  padding:0; width:min(620px,92vw);
+}
+#history-modal::backdrop{background:rgba(0,0,0,.6)}
+.modal-head{display:flex; align-items:center; justify-content:space-between;
+  padding:10px 14px; border-bottom:1px solid var(--brass)}
+.modal-head h3{margin:0; font-size:15px; letter-spacing:2px; color:var(--amber)}
+.modal-head button{background:var(--iron); color:var(--text); border:1px solid var(--brass);
+  border-radius:6px; padding:4px 10px; cursor:pointer}
+#history-canvas{width:100%; height:260px}
+
+@keyframes shudder{
+  0%{transform:translate(0,0)} 25%{transform:translate(-2px,1px)}
+  50%{transform:translate(2px,-1px)} 75%{transform:translate(-1px,-1px)}
+  100%{transform:translate(0,0)}
+}
+:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+
+@media (max-width:768px){
+  #room{grid-template-columns:1fr; grid-template-rows:none;
+    grid-template-areas:"furnaces" "boilers" "pipes" "procs"; height:auto; overflow:auto}
+  .panel{min-height:220px}
+  #panel-alerts{position:static; width:auto; max-height:none; margin:12px}
+}
+@media (prefers-reduced-motion: reduce){ *{animation:none !important} }
+body.reduced-motion *{animation:none !important}
+</style>
+</head>
+<body>
+<header id="topbar">
+  <h1>THE BOILER ROOM</h1>
+  <span id="conn" data-state="demo">demo</span>
+  <span class="spacer"></span>
+  <button id="btn-motion" type="button">Calm the room</button>
+  <button id="btn-alerts" type="button">⚙ Alert Control</button>
+</header>
+
+<main id="room">
+  <section class="panel" id="panel-furnaces">
+    <h2>FURNACES</h2>
+    <div class="furnace-row">
+      <div class="card" id="card-cpu">
+        <h3 class="card-title" data-buffer="cpuHistory" data-title="CPU FURNACE — last 30 min">CPU <span class="lamp" id="lamp-cpu" data-state="normal"></span></h3>
+        <canvas id="cpu-flame" width="120" height="150" data-tip="cpu" tabindex="0" role="img" aria-label="CPU furnace flame"></canvas>
+        <canvas id="cpu-cores" height="32" data-tip="cpu-cores"></canvas>
+        <div class="readout" id="cpu-readout">—</div>
+      </div>
+      <div class="card" id="card-gpu">
+        <h3 class="card-title" data-buffer="gpuHistory" data-title="GPU FURNACE — last 30 min">GPU <span class="lamp" id="lamp-gpu" data-state="normal"></span></h3>
+        <canvas id="gpu-flame" width="120" height="150" data-tip="gpu" tabindex="0" role="img" aria-label="GPU furnace flame"></canvas>
+        <div class="readout" id="gpu-readout">—</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-boilers">
+    <h2>BOILERS</h2>
+    <div class="boiler-row">
+      <div class="card" id="card-mem">
+        <h3 class="card-title" data-buffer="memHistory" data-title="RAM BOILER — last 30 min">RAM <span class="lamp" id="lamp-mem" data-state="normal"></span></h3>
+        <canvas id="mem-tank" width="90" height="150" data-tip="mem"></canvas>
+        <div class="readout" id="mem-readout">—</div>
+      </div>
+      <div class="card" id="card-vram">
+        <h3 class="card-title" data-buffer="vramHistory" data-title="VRAM BOILER — last 30 min">VRAM <span class="lamp" id="lamp-vram" data-state="normal"></span></h3>
+        <canvas id="vram-tank" width="90" height="90" data-tip="vram"></canvas>
+        <div class="readout" id="vram-readout">—</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-procs">
+    <h2>TOP CONSUMERS</h2>
+    <div class="proc-row">
+      <div class="proc-col">
+        <div class="proc-h">CPU</div>
+        <table id="cpu-procs"><thead><tr><th>Process</th><th>PID</th><th>CPU</th></tr></thead><tbody></tbody></table>
+      </div>
+      <div class="proc-col">
+        <div class="proc-h">Memory</div>
+        <table id="mem-procs"><thead><tr><th>Process</th><th>PID</th><th>Mem</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-pipes">
+    <h2>STEAM PIPES</h2>
+    <canvas id="pipe-canvas" data-tip="pipes"></canvas>
+    <div class="pipe-cards">
+      <div class="card" id="card-disk">
+        <h3 class="card-title" data-buffer="diskHistory" data-title="DISK PRESSURE — last 30 min">DISK <span class="lamp" id="lamp-disk" data-state="normal"></span></h3>
+        <div id="disk-tanks" data-tip="disk"></div>
+        <div class="readout" id="disk-io">—</div>
+      </div>
+      <div class="card" id="card-net">
+        <h3 class="card-title" data-buffer="netHistoryPct" data-title="NETWORK FLOW — last 30 min">NETWORK <span class="lamp" id="lamp-net" data-state="normal"></span></h3>
+        <canvas id="net-chart" height="64"></canvas>
+        <div class="readout" id="net-readout" data-tip="net">—</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<aside class="panel" id="panel-alerts" hidden aria-label="Alert control">
+  <h2>⚙ ALERT CONTROL</h2>
+  <div class="thr-row"><label for="thr-cpu">CPU</label><input type="range" min="1" max="100" class="threshold" id="thr-cpu" data-res="cpu"><span class="val" id="val-cpu">85</span></div>
+  <div class="thr-row"><label for="thr-gpu">GPU</label><input type="range" min="1" max="100" class="threshold" id="thr-gpu" data-res="gpu"><span class="val" id="val-gpu">90</span></div>
+  <div class="thr-row"><label for="thr-mem">MEM</label><input type="range" min="1" max="100" class="threshold" id="thr-mem" data-res="mem"><span class="val" id="val-mem">90</span></div>
+  <div class="thr-row"><label for="thr-disk">DISK</label><input type="range" min="1" max="100" class="threshold" id="thr-disk" data-res="disk"><span class="val" id="val-disk">95</span></div>
+  <div class="thr-row"><label for="thr-net">NET</label><input type="range" min="1" max="100" class="threshold" id="thr-net" data-res="net"><span class="val" id="val-net">90</span></div>
+  <hr class="alerts-sep">
+  <label class="notify-row"><input type="checkbox" id="notify-desktop"> Desktop notifications</label>
+  <label class="notify-row"><input type="checkbox" id="notify-browser"> In-page banner</label>
+  <label class="notify-row notify-col">Webhook URL
+    <input type="text" id="webhook-url" placeholder="https://…"></label>
+  <button id="btn-stoke" type="button">Stoke the furnace (demo load)</button>
+</aside>
+
+<div id="tooltip" role="status" aria-live="polite" hidden></div>
+
+<dialog id="history-modal">
+  <div class="modal-head">
+    <h3 id="history-title">History</h3>
+    <button id="history-close" type="button">Close ✕</button>
+  </div>
+  <canvas id="history-canvas" width="600" height="260"></canvas>
+</dialog>
+
+<script>
+"use strict";
+const AGENT_BASE = (location.protocol === 'file:') ? 'http://127.0.0.1:8077' : '';
+
+const state = {
+  last: null,
+  reducedMotion: false,
+  thresholds: null,
+  netHistory: [],          // {txBps,rxBps}
+  cpuHistory: [],
+  gpuHistory: [],
+  memHistory: [],
+  vramHistory: [],
+  diskHistory: [],
+  netHistoryPct: [],
+  memPercent: 0,
+  vramPercent: 0,
+  netRollingMax: 1,
+  diskRollingMax: 1,
+  alarmState: {},          // res -> 'normal'|'warning'|'critical'
+};
+
+const DEFAULT_THRESHOLDS = {cpu:85, gpu:90, mem:90, disk:95, net:90};
+
+/* ---------- formatting ---------- */
+function human(bps){
+  bps = Number(bps) || 0;
+  if (bps < 1024) return bps.toFixed(0) + ' B/s';
+  if (bps < 1048576) return (bps/1024).toFixed(1) + ' KB/s';
+  if (bps < 1073741824) return (bps/1048576).toFixed(1) + ' MB/s';
+  return (bps/1073741824).toFixed(1) + ' GB/s';
+}
+function gb(bytes){ return (Number(bytes)/1073741824).toFixed(1); }
+function lerp(a,b,t){ return a+(b-a)*t; }
+
+/* ---------- connection ---------- */
+function setConn(stateName){
+  const el = document.getElementById('conn');
+  el.textContent = stateName;
+  el.dataset.state = stateName;
+}
+
+/* ---------- DataSource (SSE -> poll -> demo) ---------- */
+let pollTimer = null, demoTimer = null, es = null, pollMisses = 0;
+function clearModes(){
+  if (pollTimer){ clearInterval(pollTimer); pollTimer = null; }
+  if (demoTimer){ clearInterval(demoTimer); demoTimer = null; }
+  if (es){ try{ es.close(); }catch(e){} es = null; }
+}
+function startDataSource(onSnapshot){
+  clearModes();
+  try {
+    es = new EventSource(AGENT_BASE + '/api/stream');
+    es.onmessage = e => {
+      let data;
+      try { data = JSON.parse(e.data); } catch(err){ return; }
+      if (data && data.error){ return; }
+      setConn('live');
+      onSnapshot(data);
+    };
+    es.onerror = () => {
+      if (es){ try{ es.close(); }catch(e){} es = null; }
+      if (!pollTimer && !demoTimer) startPolling(onSnapshot);
+    };
+  } catch(err){
+    startPolling(onSnapshot);
+  }
+}
+function startPolling(onSnapshot){
+  clearModes();
+  pollMisses = 0;
+  pollTimer = setInterval(() => {
+    fetch(AGENT_BASE + '/api/metrics')
+      .then(r => { if (!r.ok) throw new Error('bad'); return r.json(); })
+      .then(data => {
+        if (data && data.error) throw new Error('agent');
+        pollMisses = 0;
+        setConn('live');
+        onSnapshot(data);
+      })
+      .catch(() => {
+        pollMisses++;
+        if (pollMisses >= 2) startDemo(onSnapshot);
+      });
+  }, 1000);
+}
+function startDemo(onSnapshot){
+  clearModes();
+  setConn('demo');
+  demoTimer = setInterval(() => onSnapshot(DemoSimulator.next()), 1000);
+  onSnapshot(DemoSimulator.next());
+}
+
+/* ---------- Demo simulator (DI-010) ---------- */
+const DemoSimulator = (() => {
+  let cpu = 22, gpu = 30, mem = 55, stokeUntil = 0;
+  const procNames = ['chrome','node','code','python3','gnome-shell'];
+  function walk(v, target, step){
+    v += (target - v) * 0.15 + (Math.random() - 0.5) * step;
+    return Math.max(0, Math.min(100, v));
+  }
+  function next(){
+    const stoked = Date.now() < stokeUntil;
+    cpu = walk(cpu, stoked ? 97 : 35, 8);
+    gpu = walk(gpu, stoked ? 92 : 40, 9);
+    mem = walk(mem, stoked ? 96 : 62, 4);
+    const cores = [];
+    for (let i=0;i<8;i++) cores.push(Math.max(0, Math.min(100, cpu + (Math.random()-0.5)*30)));
+    const tx = (stoked ? 9e6 : 2.5e6) * (0.4 + Math.random());
+    const rx = (stoked ? 2.4e7 : 6e6) * (0.4 + Math.random());
+    const totalMem = 16777216000;
+    const usedMem = totalMem * mem/100;
+    const procCpu = procNames.map((n,i) => ({name:n, pid:4000+i*113, cpu:+(cpu*(0.5-i*0.08)).toFixed(1)}))
+      .map(p => ({...p, cpu: Math.max(0.1, p.cpu)}));
+    const procMem = procNames.map((n,i) => ({name:n, pid:4000+i*113,
+      memB:Math.round(usedMem*(0.28-i*0.04)), memPercent:+(mem*(0.3-i*0.04)).toFixed(1)}))
+      .map(p => ({...p, memPercent: Math.max(0.1, p.memPercent)}));
+    return {
+      ts: Date.now()/1000,
+      cpu: { overall:+cpu.toFixed(1), cores:cores.map(c=>+c.toFixed(1)), tempC:+(45+cpu*0.35).toFixed(1) },
+      gpu: { available:true, util:+gpu.toFixed(1), vramUsedMB:Math.round(8192*gpu/100), vramTotalMB:8192, name:'Demo GPU' },
+      mem: { totalB:totalMem, usedB:Math.round(usedMem), availB:Math.round(totalMem-usedMem),
+             cachedB:Math.round(totalMem*0.18), percent:+mem.toFixed(1),
+             swapTotalB:4294967296, swapUsedB:Math.round(4294967296*(stoked?0.4:0.08)),
+             swapPercent:+(stoked?40:8).toFixed(1) },
+      disks: [ {mount:'/', totalB:500107862016, usedB:Math.round(500107862016*0.61), percent:61.0},
+               {mount:'/home', totalB:1000204886016, usedB:Math.round(1000204886016*0.78), percent:78.0} ],
+      diskio: { readBps:(stoked?1.3e8:2e7)*Math.random(), writeBps:(stoked?4e7:6e6)*Math.random() },
+      net: { iface:'eth0', txBps:tx, rxBps:rx },
+      procCpu, procMem
+    };
+  }
+  function stoke(){ stokeUntil = Date.now() + 8000; }
+  return { next, stoke };
+})();
+
+/* ---------- tables & helpers ---------- */
+function fillProcTable(tableId, rows, valueFn){
+  const tbody = document.querySelector('#' + tableId + ' tbody');
+  if (!tbody) return;
+  tbody.textContent = '';
+  (rows || []).forEach(row => {
+    const tr = document.createElement('tr');
+    const tdName = document.createElement('td'); tdName.textContent = row.name;
+    const tdPid = document.createElement('td'); tdPid.textContent = row.pid;
+    const tdVal = document.createElement('td'); tdVal.textContent = valueFn(row);
+    tr.appendChild(tdName); tr.appendChild(tdPid); tr.appendChild(tdVal);
+    tbody.appendChild(tr);
+  });
+}
+function ringPush(arr, v, cap){ arr.push(v); if (arr.length > cap) arr.shift(); }
+function fitCanvas(c){
+  const r = c.getBoundingClientRect();
+  if (r.width && c.width !== Math.round(r.width)) c.width = Math.round(r.width);
+}
+function fitCanvasWH(c){
+  const r = c.getBoundingClientRect();
+  if (r.width && c.width !== Math.round(r.width)) c.width = Math.round(r.width);
+  if (r.height && c.height !== Math.round(r.height)) c.height = Math.round(r.height);
+}
+
+/* ---------- render (DI-006) ---------- */
+function renderSnapshot(s){
+  if (!s) return;
+  state.last = s;
+  ringPush(state.netHistory, {txBps:s.net.txBps, rxBps:s.net.rxBps}, 60);
+  ringPush(state.cpuHistory, s.cpu.overall, 1800);
+  ringPush(state.gpuHistory, s.gpu.available ? s.gpu.util : 0, 1800);
+  ringPush(state.memHistory, s.mem.percent, 1800);
+  const vramPct = s.gpu.available && s.gpu.vramTotalMB ? (s.gpu.vramUsedMB/s.gpu.vramTotalMB*100) : 0;
+  ringPush(state.vramHistory, vramPct, 1800);
+  const maxDisk = s.disks.length ? Math.max(...s.disks.map(d=>d.percent)) : 0;
+  ringPush(state.diskHistory, maxDisk, 1800);
+
+  // CPU furnace (red flame)
+  const temp = (s.cpu.tempC == null) ? '—' : s.cpu.tempC.toFixed(0) + '°C';
+  document.getElementById('cpu-readout').innerHTML =
+    `<b>${s.cpu.overall.toFixed(1)}%</b> · ${s.cpu.cores.length} cores · ${temp}`;
+  fillProcTable('cpu-procs', s.procCpu, r => r.cpu.toFixed(0) + '%');
+
+  // GPU furnace (blue flame)
+  if (s.gpu.available){
+    document.getElementById('gpu-readout').innerHTML = `<b>${s.gpu.util.toFixed(1)}%</b> · ${s.gpu.name||'GPU'}`;
+  } else {
+    document.getElementById('gpu-readout').textContent = 'GPU not available';
+  }
+
+  // Boiler vessel proportional sizing (BR-037)
+  const ramBytes = s.mem.totalB;
+  const vramBytes = s.gpu.available && s.gpu.vramTotalMB ? s.gpu.vramTotalMB * 1048576 : 0;
+  const maxB = Math.max(ramBytes, vramBytes, 1);
+  const MAXH = 158, MINH = 70;
+  const ramH = Math.round(MINH + (MAXH-MINH) * (ramBytes/maxB));
+  const vramH = vramBytes > 0 ? Math.round(MINH + (MAXH-MINH) * (vramBytes/maxB)) : MINH;
+  const mt = document.getElementById('mem-tank'); if (mt.height !== ramH) mt.height = ramH;
+  const vt = document.getElementById('vram-tank'); if (vt.height !== vramH) vt.height = vramH;
+
+  // RAM boiler
+  state.memPercent = s.mem.percent;
+  document.getElementById('mem-readout').innerHTML =
+    `<b>${gb(s.mem.usedB)} / ${gb(s.mem.totalB)} GB</b> (${s.mem.percent.toFixed(0)}%)<br>` +
+    `${gb(s.mem.availB)} GB free · swap ${gb(s.mem.swapUsedB)} GB (${s.mem.swapPercent.toFixed(0)}%)`;
+  fillProcTable('mem-procs', s.procMem, r => gb(r.memB) + 'G');
+
+  // VRAM boiler
+  if (s.gpu.available && s.gpu.vramTotalMB){
+    state.vramPercent = vramPct;
+    document.getElementById('vram-readout').innerHTML =
+      `<b>${Math.round(s.gpu.vramUsedMB)} / ${Math.round(s.gpu.vramTotalMB)} MB</b> (${vramPct.toFixed(0)}%)`;
+    document.getElementById('lamp-vram').dataset.state = vramPct >= 90 ? 'critical' : (vramPct >= 80 ? 'warning' : 'normal');
+  } else {
+    state.vramPercent = 0;
+    document.getElementById('vram-readout').textContent = 'GPU not available';
+    document.getElementById('lamp-vram').dataset.state = 'normal';
+  }
+
+  // Disks
+  const tanks = document.getElementById('disk-tanks');
+  tanks.textContent = '';
+  s.disks.forEach(d => {
+    const wrap = document.createElement('div'); wrap.className = 'disk-tank';
+    const vessel = document.createElement('div'); vessel.className = 'vessel';
+    const fill = document.createElement('div'); fill.className = 'fill';
+    fill.style.height = Math.max(0, Math.min(100, d.percent)) + '%';
+    vessel.appendChild(fill);
+    const label = document.createElement('div');
+    label.textContent = `${d.mount} ${d.percent.toFixed(0)}%`;
+    wrap.appendChild(vessel); wrap.appendChild(label);
+    tanks.appendChild(wrap);
+  });
+  document.getElementById('disk-io').innerHTML =
+    `read <b>${human(s.diskio.readBps)}</b> · write <b>${human(s.diskio.writeBps)}</b>`;
+  state.diskRollingMax = Math.max(state.diskRollingMax * 0.98, s.diskio.readBps, s.diskio.writeBps, 1);
+
+  // Network
+  document.getElementById('net-readout').innerHTML =
+    `↑ <b>${human(s.net.txBps)}</b> &nbsp; ↓ <b>${human(s.net.rxBps)}</b>${s.net.iface ? ' · ' + s.net.iface : ''}`;
+  const netTotal = s.net.txBps + s.net.rxBps;
+  state.netRollingMax = Math.max(state.netRollingMax * 0.98, netTotal, 1);
+  ringPush(state.netHistoryPct, Math.min(100, netTotal/state.netRollingMax*100), 1800);
+  drawNetChart();
+
+  evaluateAlerts(s);
+}
+
+/* ---------- network chart (DI-008) ---------- */
+function drawNetChart(){
+  const c = document.getElementById('net-chart');
+  if (!c) return;
+  fitCanvas(c);
+  const ctx = c.getContext('2d'); if (!ctx) return;
+  const W = c.width, H = c.height;
+  ctx.clearRect(0,0,W,H);
+  const hist = state.netHistory;
+  ctx.strokeStyle = '#2c4a26'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0,H-1); ctx.lineTo(W,H-1); ctx.stroke();
+  if (hist.length < 2) return;
+  const maxVal = Math.max(1, ...hist.map(h => Math.max(h.txBps, h.rxBps)));
+  const dx = W / 60;
+  function line(key, color){
+    ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
+    hist.forEach((h,i) => {
+      const x = i*dx, y = H*(1 - h[key]/maxVal);
+      i ? ctx.lineTo(x,y) : ctx.moveTo(x,y);
+    });
+    ctx.stroke();
+  }
+  line('txBps', '#3a86e0');
+  line('rxBps', '#e8d24a');
+  const last = hist[hist.length-1];
+  ctx.fillStyle = '#b9d6a8'; ctx.font = '10px sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText('↑'+human(last.txBps), W-2, 12);
+  ctx.fillText('↓'+human(last.rxBps), W-2, 24);
+}
+
+/* ---------- animation engine (DI-007) ---------- */
+let rafId = null;
+const memBubbles = [];
+const vramBubbles = [];
+const pipeParticles = [];
+
+function waterColor(p){
+  if (p < 50) return '#5fb86a';
+  if (p < 80) return `rgb(${Math.round(lerp(95,232,(p-50)/30))},${Math.round(lerp(184,210,(p-50)/30))},${Math.round(lerp(106,74,(p-50)/30))})`;
+  return `rgb(${Math.round(lerp(232,210,(p-80)/20))},${Math.round(lerp(210,70,(p-80)/20))},${Math.round(lerp(74,58,(p-80)/20))})`;
+}
+function drawTank(canvasId, pct, pool){
+  const c = document.getElementById(canvasId); if (!c) return;
+  const ctx = c.getContext('2d'); if (!ctx) return;
+  const W = c.width, H = c.height;
+  ctx.clearRect(0,0,W,H);
+  const p = Math.max(0, Math.min(100, pct));
+  const level = H * (1 - p/100);
+  ctx.fillStyle = waterColor(p);
+  ctx.fillRect(0, level, W, H-level);
+  ctx.strokeStyle = '#7bbf4a'; ctx.lineWidth = 2; ctx.strokeRect(1,1,W-2,H-2);
+  if (!state.reducedMotion && p > 60){
+    const rate = p > 85 ? 0.6 : 0.25;
+    if (Math.random() < rate) pool.push({x:Math.random()*W, y:H-2, r:1+Math.random()*(p>85?4:2)});
+  }
+  ctx.fillStyle = 'rgba(233,246,201,0.55)';
+  for (let i=pool.length-1;i>=0;i--){
+    const b = pool[i];
+    b.y -= 0.8 + Math.random()*(p>85?1.6:0.6);
+    if (b.y < level){ pool.splice(i,1); continue; }
+    ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI*2); ctx.fill();
+  }
+  if (pool.length > 120) pool.splice(0, pool.length-120);
+}
+function drawTankOffline(canvasId){
+  const c = document.getElementById(canvasId); if (!c) return;
+  const ctx = c.getContext('2d'); if (!ctx) return;
+  const W = c.width, H = c.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle = '#3f6a32'; ctx.lineWidth = 2; ctx.strokeRect(1,1,W-2,H-2);
+  ctx.fillStyle = '#b9d6a8'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('offline', W/2, H/2);
+}
+function drawBoil(){
+  drawTank('mem-tank', state.memPercent, memBubbles);
+  if (state.last && state.last.gpu.available && state.last.gpu.vramTotalMB) drawTank('vram-tank', state.vramPercent, vramBubbles);
+  else drawTankOffline('vram-tank');
+}
+
+function drawFlame(canvasId, pct, baseColor, tipColor, available){
+  const c = document.getElementById(canvasId); if (!c) return;
+  const ctx = c.getContext('2d'); if (!ctx) return;
+  const W = c.width, H = c.height, floor = H - 8;
+  ctx.clearRect(0,0,W,H);
+  // grate
+  ctx.strokeStyle = '#4f8f37'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(10, floor); ctx.lineTo(W-10, floor); ctx.stroke();
+  if (!available){
+    ctx.fillStyle = '#b9d6a8'; ctx.font = '12px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('offline', W/2, H/2); return;
+  }
+  const p = Math.max(0, Math.min(100, pct));
+  const flameH = Math.max(10, (floor-6) * (0.15 + 0.82 * p/100));
+  const flick = state.reducedMotion ? 0 : (Math.random()-0.5) * flameH * 0.14;
+  const cx = W/2, halfW = W * 0.22;
+  const topY = floor - flameH + flick;
+  const g = ctx.createLinearGradient(0, floor, 0, topY);
+  g.addColorStop(0, tipColor); g.addColorStop(0.55, baseColor); g.addColorStop(1, 'rgba(255,255,255,0.9)');
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.moveTo(cx-halfW, floor);
+  ctx.quadraticCurveTo(cx-halfW*1.3, topY + flameH*0.4, cx, topY);
+  ctx.quadraticCurveTo(cx+halfW*1.3, topY + flameH*0.4, cx+halfW, floor);
+  ctx.closePath(); ctx.fill();
+  // inner core
+  const ig = ctx.createLinearGradient(0, floor, 0, topY + flameH*0.3);
+  ig.addColorStop(0, baseColor); ig.addColorStop(1, 'rgba(255,255,255,0.85)');
+  ctx.fillStyle = ig;
+  ctx.beginPath();
+  ctx.moveTo(cx-halfW*0.5, floor);
+  ctx.quadraticCurveTo(cx-halfW*0.6, topY + flameH*0.55, cx, topY + flameH*0.3);
+  ctx.quadraticCurveTo(cx+halfW*0.6, topY + flameH*0.55, cx+halfW*0.5, floor);
+  ctx.closePath(); ctx.fill();
+}
+function drawCpuFlame(){ if (!state.last) return; drawFlame('cpu-flame', state.last.cpu.overall, '#e0492c', '#ffb347', true); }
+function drawGpuFlame(){ if (!state.last) return; const g = state.last.gpu; drawFlame('gpu-flame', g.available ? g.util : 0, '#3a86e0', '#8fc7ff', g.available); }
+
+function drawCores(){
+  const c = document.getElementById('cpu-cores'); if (!c || !state.last) return;
+  fitCanvas(c);
+  const ctx = c.getContext('2d'); if (!ctx) return;
+  const W = c.width, H = c.height, cores = state.last.cpu.cores;
+  ctx.clearRect(0,0,W,H);
+  if (!cores.length) return;
+  const bw = W / cores.length;
+  cores.forEach((v,i) => {
+    const flick = state.reducedMotion ? 0 : (Math.random()-0.5)*6;
+    const h = Math.max(2, H * v/100 + flick);
+    const g = ctx.createLinearGradient(0,H,0,H-h);
+    g.addColorStop(0,'#d2463a'); g.addColorStop(0.5,'#e8d24a'); g.addColorStop(1,'#a9e07a');
+    ctx.fillStyle = g;
+    ctx.fillRect(i*bw+1, H-h, bw-2, h);
+  });
+}
+
+function drawPipes(){
+  const c = document.getElementById('pipe-canvas'); if (!c || !state.last) return;
+  fitCanvasWH(c);
+  const ctx = c.getContext('2d'); if (!ctx) return;
+  const W = c.width, H = c.height;
+  ctx.clearRect(0,0,W,H);
+  const mx = Math.max(54, W*0.18), my = H/2, edge = W - 40;
+  const io = state.last.diskio, net = state.last.net;
+  const ds = Math.max(state.diskRollingMax, 1), ns = Math.max(state.netRollingMax, 1);
+  const ends = [
+    {label:'WRITE', dir:1,  color:'#e8d24a', y:H*0.16, rate:Math.min(1, io.writeBps/ds)},
+    {label:'READ',  dir:-1, color:'#a9e07a', y:H*0.39, rate:Math.min(1, io.readBps/ds)},
+    {label:'TX',    dir:1,  color:'#3a86e0', y:H*0.62, rate:Math.min(1, net.txBps/ns)},
+    {label:'RX',    dir:-1, color:'#e8d24a', y:H*0.85, rate:Math.min(1, net.rxBps/ns)},
+  ];
+  // pipes
+  ends.forEach(e => {
+    ctx.strokeStyle = '#4f8f37'; ctx.lineWidth = 11; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(mx, e.y); ctx.lineTo(edge, e.y); ctx.stroke();
+    ctx.strokeStyle = '#20351f'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(mx, e.y); ctx.lineTo(edge, e.y); ctx.stroke();
+    ctx.fillStyle = '#16241a'; ctx.strokeStyle = '#7bbf4a'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(edge, e.y, 9, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#b9d6a8'; ctx.font = '10px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText((e.dir>0 ? '▶ ' : '◀ ') + e.label, edge-6, e.y-12);
+  });
+  // furnace manifold
+  ctx.fillStyle = '#16241a'; ctx.strokeStyle = '#7bbf4a'; ctx.lineWidth = 3;
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(mx-34, my-42, 38, 84, 8); else ctx.rect(mx-34, my-42, 38, 84);
+  ctx.fill(); ctx.stroke();
+  const glow = state.last.cpu.overall/100;
+  ctx.fillStyle = `rgba(224,73,44,${0.25 + 0.55*glow})`;
+  ctx.fillRect(mx-28, my-36, 26, 72);
+  // particles
+  if (!state.reducedMotion){
+    ends.forEach((e,idx) => { if (Math.random() < e.rate) pipeParticles.push({seg:idx, t:0}); });
+    for (let i=pipeParticles.length-1;i>=0;i--){
+      const p = pipeParticles[i]; const e = ends[p.seg];
+      p.t += 0.012 + 0.03*e.rate;
+      if (p.t >= 1){ pipeParticles.splice(i,1); continue; }
+      const vert = 0.3; let x, y;
+      if (e.dir > 0){
+        if (p.t < vert){ x = mx; y = my + (e.y-my)*(p.t/vert); }
+        else { x = mx + (edge-mx)*((p.t-vert)/(1-vert)); y = e.y; }
+      } else {
+        if (p.t < (1-vert)){ x = edge + (mx-edge)*(p.t/(1-vert)); y = e.y; }
+        else { x = mx; y = e.y + (my-e.y)*((p.t-(1-vert))/vert); }
+      }
+      ctx.fillStyle = e.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+    }
+    if (pipeParticles.length > 120) pipeParticles.splice(0, pipeParticles.length-120);
+  }
+}
+
+function animationLoop(){
+  drawCpuFlame(); drawGpuFlame(); drawCores(); drawBoil(); drawPipes();
+  rafId = requestAnimationFrame(animationLoop);
+}
+function setReducedMotion(on){
+  state.reducedMotion = on;
+  document.body.classList.toggle('reduced-motion', on);
+  if (on) localStorage.setItem('boiler.reducedMotion','1');
+  else localStorage.removeItem('boiler.reducedMotion');
+  document.getElementById('btn-motion').textContent = on ? 'Wake the room' : 'Calm the room';
+}
+
+/* ---------- thresholds & alarms (DI-009) ---------- */
+function loadThresholds(){
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem('boiler.thresholds')) || {}; } catch(e){}
+  state.thresholds = Object.assign({}, DEFAULT_THRESHOLDS, saved);
+  ['cpu','gpu','mem','disk','net'].forEach(res => {
+    const input = document.getElementById('thr-' + res);
+    const val = document.getElementById('val-' + res);
+    input.value = state.thresholds[res];
+    val.textContent = state.thresholds[res];
+  });
+}
+function persistThresholds(){
+  localStorage.setItem('boiler.thresholds', JSON.stringify(state.thresholds));
+}
+function metricValue(res, s){
+  if (!s) return 0;
+  switch(res){
+    case 'cpu': return s.cpu.overall;
+    case 'gpu': return s.gpu.available ? s.gpu.util : 0;
+    case 'mem': return s.mem.percent;
+    case 'disk': return s.disks.length ? Math.max(...s.disks.map(d=>d.percent)) : 0;
+    case 'net': return Math.min(100, (s.net.txBps + s.net.rxBps)/state.netRollingMax*100);
+    default: return 0;
+  }
+}
+function applyZones(res){
+  const card = document.getElementById('card-' + res);
+  if (card) card.style.setProperty('--thr', state.thresholds[res]);
+  if (state.last) evaluateAlerts(state.last);
+}
+function evaluateAlerts(s){
+  ['cpu','gpu','mem','disk','net'].forEach(res => {
+    const v = metricValue(res, s);
+    const thr = state.thresholds[res];
+    const zone = v >= thr ? 'critical' : (v >= thr*0.9 ? 'warning' : 'normal');
+    const lamp = document.getElementById('lamp-' + res);
+    if (lamp) lamp.dataset.state = zone;
+    const card = document.getElementById('card-' + res);
+    if (card) card.classList.toggle('alarm', zone === 'critical');
+    const prev = state.alarmState[res];
+    if (zone === 'critical' && prev !== 'critical') notify(res, v);
+    state.alarmState[res] = zone;
+  });
+}
+function notify(res, v){
+  if (document.getElementById('notify-browser').checked) showBanner(`${res.toUpperCase()} at ${v.toFixed(0)}%`);
+  if (document.getElementById('notify-desktop').checked && 'Notification' in window){
+    if (Notification.permission === 'granted'){
+      try { new Notification('Boiler Room', {body:`${res.toUpperCase()} at ${v.toFixed(0)}%`}); } catch(e){}
+    } else if (Notification.permission === 'default'){
+      Notification.requestPermission();
+    }
+  }
+  const url = document.getElementById('webhook-url').value.trim();
+  if (url){
+    fetch(url, {method:'POST', body:JSON.stringify({res, value:v})}).catch(()=>{});
+  }
+}
+let bannerTimer = null;
+function showBanner(text){
+  let b = document.getElementById('alert-banner');
+  if (!b){
+    b = document.createElement('div'); b.id = 'alert-banner';
+    b.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:60;background:#d2463a;color:#fff;padding:8px 16px;border-radius:8px;box-shadow:0 4px 14px #000a;font-size:14px';
+    document.body.appendChild(b);
+  }
+  b.textContent = '⚠ ' + text;
+  b.style.display = 'block';
+  clearTimeout(bannerTimer);
+  bannerTimer = setTimeout(() => { b.style.display = 'none'; }, 4000);
+}
+
+/* ---------- tooltips & modal (DI-011) ---------- */
+const tooltip = document.getElementById('tooltip');
+function tipText(kind){
+  const s = state.last; if (!s) return '';
+  switch(kind){
+    case 'cpu': case 'cpu-cores':
+      return `CPU ${s.cpu.overall.toFixed(1)}% · threshold ${state.thresholds.cpu}%`;
+    case 'gpu':
+      return s.gpu.available ? `GPU ${s.gpu.util.toFixed(1)}% · threshold ${state.thresholds.gpu}%` : 'GPU not available';
+    case 'mem':
+      return `RAM ${s.mem.percent.toFixed(1)}% · threshold ${state.thresholds.mem}%`;
+    case 'vram':
+      return (s.gpu.available && s.gpu.vramTotalMB) ? `VRAM ${state.vramPercent.toFixed(0)}% · ${Math.round(s.gpu.vramUsedMB)}/${Math.round(s.gpu.vramTotalMB)} MB` : 'GPU not available';
+    case 'disk':
+      return `Disk ${metricValue('disk',s).toFixed(0)}% · threshold ${state.thresholds.disk}%`;
+    case 'net':
+      return `↑${human(s.net.txBps)} ↓${human(s.net.rxBps)}`;
+    case 'pipes':
+      return `disk ▶${human(s.diskio.writeBps)} ◀${human(s.diskio.readBps)} · net ▶${human(s.net.txBps)} ◀${human(s.net.rxBps)}`;
+    default: return '';
+  }
+}
+function showTip(kind, x, y){
+  const txt = tipText(kind); if (!txt) return;
+  tooltip.textContent = txt;
+  tooltip.hidden = false;
+  tooltip.style.left = Math.min(x + 12, window.innerWidth - 180) + 'px';
+  tooltip.style.top = (y + 14) + 'px';
+}
+function hideTip(){ tooltip.hidden = true; }
+function wireTooltips(){
+  document.querySelectorAll('[data-tip]').forEach(el => {
+    const kind = el.dataset.tip;
+    el.addEventListener('pointerenter', e => showTip(kind, e.clientX, e.clientY));
+    el.addEventListener('pointermove', e => { if (!tooltip.hidden) showTip(kind, e.clientX, e.clientY); });
+    el.addEventListener('pointerleave', hideTip);
+    el.addEventListener('focus', () => { const r = el.getBoundingClientRect(); showTip(kind, r.right, r.top); });
+    el.addEventListener('blur', hideTip);
+    el.addEventListener('click', e => { showTip(kind, e.clientX, e.clientY); setTimeout(hideTip, 2500); });
+  });
+}
+
+const modal = document.getElementById('history-modal');
+function openHistory(buffer, title){
+  document.getElementById('history-title').textContent = title;
+  const c = document.getElementById('history-canvas');
+  const ctx = c.getContext('2d');
+  const data = state[buffer] || [];
+  ctx.clearRect(0,0,c.width,c.height);
+  if (data.length < 2){
+    ctx.fillStyle = '#b9d6a8'; ctx.font = '16px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('no data yet', c.width/2, c.height/2);
+  } else {
+    const W = c.width, H = c.height, maxVal = 100;
+    ctx.strokeStyle = '#2c4a26'; ctx.beginPath(); ctx.moveTo(0,H-1); ctx.lineTo(W,H-1); ctx.stroke();
+    ctx.strokeStyle = '#e8d24a'; ctx.lineWidth = 2; ctx.beginPath();
+    const dx = W / Math.max(1, data.length-1);
+    data.forEach((v,i) => { const x=i*dx, y=H*(1-v/maxVal); i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
+    ctx.stroke();
+    ctx.fillStyle = '#b9d6a8'; ctx.font = '12px sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText(data[data.length-1].toFixed(1) + '%', 6, 16);
+  }
+  if (typeof modal.showModal === 'function'){ modal.showModal(); }
+  else { modal.setAttribute('open',''); }
+  document.getElementById('history-close').focus();
+}
+function closeHistory(){
+  if (typeof modal.close === 'function' && modal.open) modal.close();
+  else modal.removeAttribute('open');
+}
+
+/* ---------- bootstrap (DI-011) ---------- */
+function init(){
+  const stored = localStorage.getItem('boiler.reducedMotion') === '1';
+  const prefers = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setReducedMotion(stored || prefers);
+
+  loadThresholds();
+
+  document.querySelectorAll('input.threshold').forEach(input => {
+    input.addEventListener('input', () => {
+      const res = input.dataset.res;
+      state.thresholds[res] = Number(input.value);
+      document.getElementById('val-' + res).textContent = input.value;
+      persistThresholds();
+      applyZones(res);
+    });
+  });
+
+  document.getElementById('btn-motion').addEventListener('click', () => setReducedMotion(!state.reducedMotion));
+  document.getElementById('btn-alerts').addEventListener('click', () => {
+    const p = document.getElementById('panel-alerts');
+    p.hidden = !p.hidden;
+  });
+  document.getElementById('btn-stoke').addEventListener('click', () => DemoSimulator.stoke());
+
+  document.querySelectorAll('.card-title[data-buffer]').forEach(h => {
+    h.addEventListener('click', () => openHistory(h.dataset.buffer, h.dataset.title));
+  });
+  document.getElementById('history-close').addEventListener('click', closeHistory);
+  modal.addEventListener('keydown', e => { if (e.key === 'Escape'){ e.preventDefault(); closeHistory(); } });
+
+  wireTooltips();
+  startDataSource(renderSnapshot);
+  animationLoop();
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+else init();
+</script>
+</body>
+</html>

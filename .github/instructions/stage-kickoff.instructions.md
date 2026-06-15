@@ -10,7 +10,20 @@ description: "Run before starting any stage output."
 3. Load current stage skill.
 4. Run `bash .github/skills/manager-pipeline-orchestration/automation/stage-precheck.sh <project-root> <stage>`.
 5. Read required upstream files.
-6. Append START entry in X-Journal.md.
+6. Determine the next journal ID before writing any entry:
+   ```
+   next_n=$(( $(grep -c '^## JN-' <project-root>/X-Journal.md 2>/dev/null || echo 0) + 1 ))
+   printf 'Next JN-ID: JN-%03d\n' "$next_n"
+   ```
+   Use this value for ALL journal entries in this stage run. Increment by 1 for each additional entry (START → COMPLETE).
+7. Run stage-runner to get template and quality-check hints:
+   ```
+   bash .github/skills/manager-pipeline-orchestration/automation/stage-runner.sh --json <project-root> <stage>
+   ```
+   Parse the JSON output:
+   - If `hydrated_artifact` is `"false"` and `template_hint` is not `"none"`: copy the template before writing (`cp <template_hint> <project-root>/<primary_artifact>`).
+   - If `quality_check_template` is not `"none"`: **you MUST execute `quality_check_next_command` and complete the checklist before writing stage output.** Skipping this is a gate violation.
+8. Append START entry in X-Journal.md using the JN-ID from step 6.
 
 ## Upstream Inputs
 

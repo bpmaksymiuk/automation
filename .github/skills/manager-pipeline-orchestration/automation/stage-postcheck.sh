@@ -95,6 +95,16 @@ if ! grep -Eq "^GATE ${stage}: (PASS|FAIL - .+)$" "$artifact_full_path"; then
   exit 1
 fi
 
+# Gate line must appear in the final 15% of the file (rounded up to a minimum of 5 lines).
+# This prevents weaker models from writing the gate near the STATUS header.
+total_lines="$(wc -l < "$artifact_full_path" || echo 1)"
+gate_line_num="$(grep -n "^GATE ${stage}:" "$artifact_full_path" | tail -n 1 | cut -d: -f1)"
+min_bottom_line=$(( total_lines - ( total_lines * 15 / 100 + 5 ) ))
+if [[ -n "$gate_line_num" ]] && [[ "$gate_line_num" -lt "$min_bottom_line" ]]; then
+  emit_fail "POSTCHECK_GATE_LINE_NOT_AT_BOTTOM" "Gate line is at line ${gate_line_num} of ${total_lines}. Move 'GATE ${stage}:' to the final lines of the artifact (after all sections)."
+  exit 1
+fi
+
 if [[ "$json_mode" -eq 1 ]]; then
   printf '{"result":"PASS","requested_stage":"%s","artifact":"%s","next_action":"%s"}\n' \
     "$(json_escape "$stage")" \

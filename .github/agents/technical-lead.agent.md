@@ -6,12 +6,17 @@ description: >
 tools:
   - read_file
   - create_file
-  - apply_patch
+  - replace_string_in_file
+  - multi_replace_string_in_file
   - grep_search
   - file_search
+  - semantic_search
   - list_dir
   - fetch_webpage
   - run_in_terminal
+  - get_errors
+  - manage_todo_list
+  - memory
 ---
 
 ## Pipeline Role
